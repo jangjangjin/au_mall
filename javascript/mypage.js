@@ -1,9 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('../components/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
+
 
     // 프로필 수정 버튼 클릭 이벤트 처리
     document.getElementById('edit-profile').addEventListener('click', function() {
@@ -23,4 +18,3 @@ document.addEventListener("DOMContentLoaded", function() {
         alert('아이디 및 비밀번호가 수정되었습니다.');
         // 아이디 및 비밀번호 수정 처리 코드 추가
     });
-});

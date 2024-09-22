@@ -1,9 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('../components/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
 
     // 전체 선택 체크박스 이벤트 처리
     document.getElementById('select-all').addEventListener('change', function() {
@@ -61,4 +55,3 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('checkout').addEventListener('click', function() {
         window.location.href = 'payment.html';
     });
-});

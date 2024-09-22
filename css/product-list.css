@@ -25,6 +25,7 @@ main {
     text-align: center;
     width: calc(25% - 1rem);
     transition: transform 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
 }
 
 .product-item:hover {
@@ -45,12 +46,14 @@ main {
 
 .product-item h3 {
     margin: 0.5rem 0;
+    font-size: 1.25rem;
 }
 
 .product-item p {
     margin: 0;
     color: #e60000;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 footer {
@@ -58,4 +61,47 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
+    font-size: 1rem;
+}
+
+/* 반응형 설정 - 작은 화면일 때 레이아웃 및 폰트 크기 조정 */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    header .logo {
+        font-size: 1.2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .product-item {
+        width: calc(50% - 1rem); /* 두 개씩 배치 */
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    header .logo {
+        font-size: 1rem;
+    }
+
+    .product-item {
+        width: 100%; /* 한 개씩 배치 */
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
 }

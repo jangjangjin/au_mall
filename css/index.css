@@ -1,4 +1,4 @@
-/* index.css */
+/* 기본 스타일 설정 */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-size: 16px;
 }
 
 header {
@@ -20,6 +21,7 @@ header {
 header .logo {
     text-decoration: none;
     color: white;
+    font-size: 1.5rem;
 }
 
 nav ul {
@@ -30,15 +32,13 @@ nav ul {
     padding: 0;
 }
 
-nav ul li {
-    display: inline;
-}
-
 nav ul li a {
     text-decoration: none;
     color: white;
+    font-size: 1rem;
 }
 
+/* 슬라이더 영역 */
 .slider {
     position: relative;
     width: 100%;
@@ -61,6 +61,7 @@ nav ul li a {
     height: 300px;
 }
 
+/* 이전/다음 버튼 */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -71,6 +72,7 @@ nav ul li a {
     padding: 1rem;
     cursor: pointer;
     z-index: 1;
+    font-size: 2rem; /* 기본 버튼 크기 */
 }
 
 .prev {
@@ -81,6 +83,7 @@ nav ul li a {
     right: 10px;
 }
 
+/* 슬라이더 하단 점(인디케이터) */
 .dots {
     text-align: center;
     position: absolute;
@@ -90,8 +93,8 @@ nav ul li a {
 
 .dot {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     margin: 0 5px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
@@ -119,6 +122,7 @@ main {
     text-align: center;
     width: calc(25% - 1rem);
     transition: transform 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
 }
 
 .product-item:hover {
@@ -139,12 +143,14 @@ main {
 
 .product-item h3 {
     margin: 0.5rem 0;
+    font-size: 1.25rem;
 }
 
 .product-item p {
     margin: 0;
     color: #e60000;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 footer {
@@ -152,4 +158,83 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
+    font-size: 1rem;
+}
+
+/* 반응형 설정 - 작은 화면일 때 레이아웃 및 폰트 크기 조정 */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    header .logo {
+        font-size: 1.2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .slider {
+        height: 200px; /* 슬라이더 높이 축소 */
+    }
+
+    .slide img {
+        height: 200px;
+    }
+
+    .prev, .next {
+        font-size: 1.5rem; /* 작은 화면에서 버튼 크기 축소 */
+        padding: 0.75rem;  /* 버튼 크기 축소 */
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px; /* 작은 화면에서 점 크기 축소 */
+    }
+
+    .product-item {
+        width: calc(50% - 1rem); /* 두 개씩 배치 */
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    header .logo {
+        font-size: 1rem;
+    }
+
+    .slider {
+        height: 150px;
+    }
+
+    .slide img {
+        height: 150px;
+    }
+
+    .prev, .next {
+        font-size: 1.2rem; /* 모바일 화면에서 버튼 크기 더 축소 */
+        padding: 0.5rem;
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px; /* 모바일 화면에서 점 크기 축소 */
+    }
+
+    .product-item {
+        width: 100%; /* 한 개씩 배치 */
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
 }

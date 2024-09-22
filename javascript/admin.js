@@ -1,9 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('../components/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
+
 
     // 상품 추가 폼 제출 이벤트 처리
     document.getElementById('add-product-form').addEventListener('submit', function(event) {
@@ -27,4 +22,3 @@ document.addEventListener("DOMContentLoaded", function() {
             // 회원 제거 처리 코드 추가
         });
     });
-});
