@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+    <header>
+        <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
+        <nav>
+            <ul>
+                <li><a href="/index.html">홈</a></li>
+                <li><a href="/html/login.html">로그인</a></li>
+                <li><a href="/html/signup.html">회원가입</a></li>
+                <li><a href="/html/product-list.html">상품 목록</a></li>
+                <li><a href="/html/cart.html">장바구니</a></li>
+                <li><a href="/html/mypage.html">마이페이지</a></li>
+                <li><a href="/html/customer-service.html">고객 서비스</a></li>
+                <li><a href="/html/admin.html">관리자 페이지</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>관리자 페이지</h2>
+        <div class="admin-sections">
+            <div class="section">
+                <h3>상품 관리</h3>
+                <form id="add-product-form">
+                    <div>
+                        <label for="product-name">상품명:</label>
+                        <input type="text" id="product-name" name="product-name" required>
+                    </div>
+                    <div>
+                        <label for="product-price">가격:</label>
+                        <input type="number" id="product-price" name="product-price" required>
+                    </div>
+                    <div>
+                        <label for="product-description">설명:</label>
+                        <textarea id="product-description" name="product-description" required></textarea>
+                    </div>
+                    <button type="submit">상품 추가</button>
+                </form>
+                <div class="product-list">
+                    <h4>상품 목록</h4>
+                    <ul>
+                        <li>상품 1 <button class="remove-product">제거</button></li>
+                        <li>상품 2 <button class="remove-product">제거</button></li>
+                        <!-- 추가 상품 항목들 -->
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <h3>회원 관리</h3>
+                <div class="user-list">
+                    <h4>회원 목록</h4>
+                    <ul>
+                        <li>회원 1 <button class="remove-user">제거</button></li>
+                        <li>회원 2 <button class="remove-user">제거</button></li>
+                        <!-- 추가 회원 항목들 -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
+    </footer>
+
+    <script src="../javascript/admin.js"></script>
+</body>
+</html>

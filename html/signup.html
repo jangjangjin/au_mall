@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+    <header>
+        <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
+        <nav>
+            <ul>
+                <li><a href="/index.html">홈</a></li>
+                <li><a href="/html/login.html">로그인</a></li>
+                <li><a href="/html/signup.html">회원가입</a></li>
+                <li><a href="/html/product-list.html">상품 목록</a></li>
+                <li><a href="/html/cart.html">장바구니</a></li>
+                <li><a href="/html/mypage.html">마이페이지</a></li>
+                <li><a href="/html/customer-service.html">고객 서비스</a></li>
+                <li><a href="/html/admin.html">관리자 페이지</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form id="signup-form">
+            <div>
+                <label for="username">사용자 이름:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <label for="confirm-password">비밀번호 확인:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit">회원가입</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
+    </footer>
+
+    <script src="../javascript/signup.js"></script>
+</body>
+</html>

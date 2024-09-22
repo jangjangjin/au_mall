@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="../css/mypage.css">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+    <header>
+        <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
+        <nav>
+            <ul>
+                <li><a href="/index.html">홈</a></li>
+                <li><a href="/html/login.html">로그인</a></li>
+                <li><a href="/html/signup.html">회원가입</a></li>
+                <li><a href="/html/product-list.html">상품 목록</a></li>
+                <li><a href="/html/cart.html">장바구니</a></li>
+                <li><a href="/html/mypage.html">마이페이지</a></li>
+                <li><a href="/html/customer-service.html">고객 서비스</a></li>
+                <li><a href="/html/admin.html">관리자 페이지</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>마이페이지</h2>
+        <div class="profile-section">
+            <img src="https://via.placeholder.com/150" alt="프로필 이미지" class="profile-img">
+            <div class="profile-info">
+                <h3>닉네임</h3>
+                <p>이메일: user@example.com</p>
+                <button id="edit-profile">프로필 수정</button>
+            </div>
+        </div>
+        <div class="mypage-sections">
+            <div class="section">
+                <h3>내가 쓴 리뷰</h3>
+                <ul>
+                    <li>리뷰 1</li>
+                    <li>리뷰 2</li>
+                    <li>리뷰 3</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>문의 답변 보기</h3>
+                <ul>
+                    <li>문의 1</li>
+                    <li>문의 2</li>
+                    <li>문의 3</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>주문 확인</h3>
+                <button id="view-orders">주문 확인하기</button>
+            </div>
+            <div class="section">
+                <h3>아이디 및 비밀번호 수정</h3>
+                <form id="update-credentials-form">
+                    <div>
+                        <label for="username">아이디:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div>
+                        <label for="password">비밀번호:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">수정</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
+    </footer>
+
+    <script src="../javascript/mypage.js"></script>
+</body>
+</html>
