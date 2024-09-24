@@ -9,43 +9,69 @@
 </head>
 <body>
     <div class="container">
-    <header>
-        <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
-        <nav>
-            <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-            <ul>
-                <li><a href="/index.html">홈</a></li>
-                <li><a href="/html/login.html">로그인</a></li>
-                <li><a href="/html/signup.html">회원가입</a></li>
-                <li><a href="/html/product-list.html">상품 목록</a></li>
-                <li><a href="/html/cart.html">장바구니</a></li>
-                <li><a href="/html/mypage.html">마이페이지</a></li>
-                <li><a href="/html/customer-service.html">고객 서비스</a></li>
-                <li><a href="/html/admin.html">관리자 페이지</a></li>
-            </ul>
-        </nav>
-    </header>
+        <header>
+            <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
+            <nav>
+                <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+                <ul>
+                    <li><a href="/index.html">홈</a></li>
+                    <li><a href="/html/login.html">로그인</a></li>
+                    <li><a href="/html/signup.html">회원가입</a></li>
+                    <li><a href="/html/product-list.html">상품 목록</a></li>
+                    <li><a href="/html/cart.html">장바구니</a></li>
+                    <li><a href="/html/mypage.html">마이페이지</a></li>
+                    <li><a href="/html/customer-service.html">고객 서비스</a></li>
+                    <li><a href="/html/admin.html">관리자 페이지</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <main>
-        <form id="login-form">
-            <div>
-                <label for="email">이메일:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="password">비밀번호:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">로그인</button>
-            <button type="button" id="signup-button">회원가입</button>
-        </form>
-        
-    </main>
+        <main>
+            <form id="login-form">
+                <div>
+                    <label for="email">이메일:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">비밀번호:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">로그인</button>
+                <button type="button" id="signup-button">회원가입</button>
+            </form>
+        </main>
 
-    <footer>
-        <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
-    </footer>
+        <footer>
+            <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
+        </footer>
     </div>
+
+    <!-- Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBbcV59d0PLO_c7F6-St_udJfvGcF1WY84",
+        authDomain: "aumall-67026.firebaseapp.com",
+        databaseURL: "https://aumall-67026-default-rtdb.firebaseio.com",
+        projectId: "aumall-67026",
+        storageBucket: "aumall-67026.appspot.com",
+        messagingSenderId: "901993671866",
+        appId: "1:901993671866:web:bd898dab7c2752bbfe6683",
+        measurementId: "G-BX8FHPL7CD"
+};
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // 데이터베이스 변수
+      const database = firebase.database();
+    </script>
 
     <script src="../javascript/login.js"></script>
     <script src="../javascript/header.js"></script>
