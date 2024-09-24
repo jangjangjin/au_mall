@@ -12,22 +12,31 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         return;
     }
 
-    // 사용자 정보를 객체로 생성
-    const userData = {
-        username: username,
-        email: email,
-        password: password
-    };
+    // Firebase Authentication을 사용하여 회원가입
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // 회원가입 성공
+            const user = userCredential.user;
 
-    // 데이터베이스에 저장
-    const userId = firebase.database().ref('users').push().key; // 고유 ID 생성
-    firebase.database().ref('users/' + userId).set(userData)
-        .then(() => {
-            console.log('데이터가 성공적으로 저장되었습니다:', userData);
-            alert('회원가입이 완료되었습니다!');
-            document.getElementById('signup-form').reset(); // 폼 초기화
+            // 추가 사용자 정보를 데이터베이스에 저장
+            const userData = {
+                username: username,
+                email: email
+            };
+
+            firebase.database().ref('users/' + user.uid).set(userData)
+                .then(() => {
+                    console.log('데이터가 성공적으로 저장되었습니다:', userData);
+                    alert('회원가입이 완료되었습니다!');
+                    document.getElementById('signup-form').reset(); // 폼 초기화
+                    window.location.href = '/html/login.html';
+                })
+                .catch((error) => {
+                    console.error('추가 사용자 정보 저장 중 오류 발생:', error);
+                });
         })
         .catch((error) => {
             console.error('회원가입 중 오류 발생:', error);
+            alert('회원가입 중 오류가 발생했습니다: ' + error.message);
         });
 });
