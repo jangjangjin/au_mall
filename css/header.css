@@ -1,98 +1,98 @@
 /* header.css */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: flex;
+  margin: 0 auto;
 }
 
 header {
-    color: black;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 10; /* 메뉴가 슬라이더 위로 오도록 설정 */
+  color: black;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10; /* 메뉴가 슬라이더 위로 오도록 설정 */
 }
 
 header .logo {
-    text-decoration: none;
-    color: black;
-    font-size: 1.5rem;
-    font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 /* 기본 메뉴 스타일 */
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 1rem;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 
 nav ul.show {
-    max-height: 1000px; /* 충분히 큰 값으로 설정 */
-    opacity: 1;
+  max-height: 1000px; /* 충분히 큰 값으로 설정 */
+  opacity: 1;
 }
 
 nav ul li {
-    display: inline;
+  display: inline;
 }
 
 nav ul li a {
-    color: black;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 /* 햄버거 메뉴 아이콘 기본적으로 숨김 */
 nav .menu-icon {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #8c8c8c;
-        padding: 0;
-        z-index: 20; /* 슬라이더 위에 메뉴 표시 */
-    }
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #8c8c8c;
+    padding: 0;
+    z-index: 20; /* 슬라이더 위에 메뉴 표시 */
+  }
 
-    nav ul.show {
-        max-height: 1000px; /* 충분히 큰 값으로 설정 */
-        opacity: 1;
-    }
+  nav ul.show {
+    max-height: 1000px; /* 충분히 큰 값으로 설정 */
+    opacity: 1;
+  }
 
-    nav ul li {
-        text-align: center;
-        padding: 1rem;
-        border-top: 1px solid #444;
-    }
+  nav ul li {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #444;
+  }
 
-    nav .menu-icon {
-        display: block; /* 작은 화면에서는 햄버거 아이콘 표시 */
-    }
+  nav .menu-icon {
+    display: block; /* 작은 화면에서는 햄버거 아이콘 표시 */
+  }
 }
 
 /* 큰 화면에서 메뉴 항상 보이도록 설정 */
 @media (min-width: 769px) {
-    nav ul {
-        display: flex;
-        max-height: none;
-        opacity: 1;
-    }
+  nav ul {
+    display: flex;
+    max-height: none;
+    opacity: 1;
+  }
 }

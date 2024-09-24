@@ -1,85 +1,231 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>쇼핑몰 메인 페이지</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/header.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/header.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
-            <nav>
-                <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-                <ul>
-                    <li><a href="/index.html">홈</a></li>
-                    <li><a href="/html/login.html">로그인</a></li>
-                    <li><a href="/html/signup.html">회원가입</a></li>
-                    <li><a href="/html/product-list.html">상품 목록</a></li>
-                    <li><a href="/html/cart.html">장바구니</a></li>
-                    <li><a href="/html/mypage.html">마이페이지</a></li>
-                    <li><a href="/html/customer-service.html">고객 서비스</a></li>
-                    <li><a href="/html/admin.html">관리자 페이지</a></li>
-                </ul>
-            </nav>
-        </header>
-        <section class="slider">
-            <div class="slides">
-                <div class="slide"><img src="https://via.placeholder.com/1200x300" alt="슬라이드 이미지 1"></div>
-                <div class="slide"><img src="https://via.placeholder.com/1200x300" alt="슬라이드 이미지 2"></div>
-                <div class="slide"><img src="https://via.placeholder.com/1200x300" alt="슬라이드 이미지 3"></div>
-            </div>
-            <button class="prev">&#10094;</button>
-            <button class="next">&#10095;</button>
-            <div class="dots">
-                <span class="dot" data-index="0"></span>
-                <span class="dot" data-index="1"></span>
-                <span class="dot" data-index="2"></span>
-            </div>
-        </section>
+      <header>
+        <a href="/index.html" class="logo"><h1>AU MALL</h1></a>
+        <nav>
+          <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+          <ul>
+            <li><a href="/index.html">홈</a></li>
+            <li><a href="/html/login.html">로그인</a></li>
+            <li><a href="/html/signup.html">회원가입</a></li>
+            <li><a href="/html/product-list.html">상품 목록</a></li>
+            <li><a href="/html/cart.html">장바구니</a></li>
+            <li><a href="/html/mypage.html">마이페이지</a></li>
+            <li><a href="/html/customer-service.html">고객 서비스</a></li>
+            <li><a href="/html/admin.html">관리자 페이지</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="slider">
+        <div class="slides">
+          <div class="slide">
+            <img
+              src="https://via.placeholder.com/1200x300"
+              alt="슬라이드 이미지 1"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://via.placeholder.com/1200x300"
+              alt="슬라이드 이미지 2"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="https://via.placeholder.com/1200x300"
+              alt="슬라이드 이미지 3"
+            />
+          </div>
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+        <div class="dots">
+          <span class="dot" an>
+          <span class="dot" an>
+          <span class="dot" an>
+        </div>
+      </section>
+      <h2>추천 상품</h2>
+      <main>
+        <div class="product-list">
+          <div class="product-item">
+            <a href="html/product-detail.html?id=1">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 1" />
+              <h3>상품명 1</h3>
+              <p>₩10,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=2">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 2" />
+              <h3>상품명 2</h3>
+              <p>₩20,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=3">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 3" />
+              <h3>상품명 3</h3>
+              <p>₩30,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=4">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 4" />
+              <h3>상품명 4</h3>
+              <p>₩40,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=5">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 5" />
+              <h3>상품명 5</h3>
+              <p>₩50,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=6">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 6" />
+              <h3>상품명 6</h3>
+              <p>₩60,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=7">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 7" />
+              <h3>상품명 7</h3>
+              <p>₩70,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=8">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 8" />
+              <h3>상품명 8</h3>
+              <p>₩80,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=9">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 9" />
+              <h3>상품명 9</h3>
+              <p>₩90,000</p>
+            </a>
+          </div>
+          <div class="product-item">
+            <a href="html/product-detail.html?id=10">
+              <img src="https://via.placeholder.com/200" alt="상품 이미지 10" />
+              <h3>상품명 10</h3>
+              <p>100,000</p>
+            </a>
+          </div>
+        </div>
+      </main>
 
-        <main>
-            <h2>추천 상품</h2>
-            <div class="product-list">
-                <div class="product-item">
-                    <a href="html/product-detail.html?id=1">
-                        <img src="https://via.placeholder.com/200" alt="상품 이미지 1">
-                        <h3>상품명 1</h3>
-                        <p>₩10,000</p>
-                    </a>
-                </div>
-                <div class="product-item">
-                    <a href="html/product-detail.html?id=2">
-                        <img src="https://via.placeholder.com/200" alt="상품 이미지 2">
-                        <h3>상품명 2</h3>
-                        <p>₩20,000</p>
-                    </a>
-                </div>
-                <div class="product-item">
-                    <a href="html/product-detail.html?id=3">
-                        <img src="https://via.placeholder.com/200" alt="상품 이미지 3">
-                        <h3>상품명 3</h3>
-                        <p>₩30,000</p>
-                    </a>
-                </div>
-                <div class="product-item">
-                    <a href="html/product-detail.html?id=4">
-                        <img src="https://via.placeholder.com/200" alt="상품 이미지 4">
-                        <h3>상품명 4</h3>
-                        <p>₩40,000</p>
-                    </a>
-                </div>
+      <footer>
+        <div class="service_area">
+          <div class="customer_service">
+            <strong class="service_title"
+              >고객센터<a
+                                href="tel:1234-5678"
+                class="sevice_tel"
+                >1234-5678</a
+              ></strong
+            >
+            <div class="service_time">
+              <dl class="time_box">
+                <dt class="time_term">
+                  운영시간 평일 10:00 - 18:00 (토∙일, 공휴일 휴무) 점심시간 평일
+                  13:00 - 14:00
+                </dt>
+              </dl>
             </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
-        </footer>
+            <p class="service_noti">
+              1:1 문의하기는 앱에서만 가능합니다.
+            </p>
+            <div class="service_btn_box">
+              <a href="#"
+                class="btn solid small"
+              >
+                자주 묻는 질문
+              </a>
+            </div>
+          </div>
+          <div class="footer_menu">
+            <div class="menu_box">
+              <strong class="menu_title">이용안내</strong>
+              <ul class="menu_list">
+                <li class="menu_item">
+                  <a href="#" class="menu_link">
+                    검수기준
+                  </a>
+                </li>
+                <li class="menu_item">
+                  <a href="#" class="menu_link">
+                    이용정책
+                  </a>
+                </li>
+                <li class="menu_item">
+                  <a href="#" class="menu_link">
+                    페널티 정책
+                  </a>
+                </li>
+                <li class="menu_item">
+                  <a href="#" class="menu_link">
+                    가이드라인
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_box">
+              <strong class="menu_title">고객지원</strong>
+              <ul class="menu_list">
+                <li class="menu_item">
+                  <a href="/notice" class="menu_link"
+                    >공지사항</a
+                  >
+                </li>
+                <li class="menu_item">
+                  <a
+                                        href="/about"
+                    target="_blank"
+                    class="menu_link"
+                    >서비스 소개</a
+                  >
+                </li>
+                <li class="menu_item">
+                  <a
+                                        href="/showroom"
+                    class="menu_link"
+                    target="_blank"
+                  >
+                    스토어 안내
+                  </a>
+                </li>
+                <li class="menu_item">
+                  <a
+                                        href="/about/seller_reception"
+                    target="_blank"
+                    class="menu_link"
+                    >판매자 방문접수</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <script src="javascript/index.js"></script>
     <script src="javascript/header.js"></script>
-</body>
+  </body>
 </html>
