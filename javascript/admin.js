@@ -290,6 +290,52 @@ function editProduct(productId, productData) {
     });
 }
 
+// 회원 목록에 항목 추가
+function addUserToList(userId, userData) {
+    const userList = document.querySelector('.user-list ul');
+    const listItem = document.createElement('li');
+    listItem.setAttribute('data-id', userId);
+    listItem.innerHTML = `
+        <strong>${userData.username}</strong> (${userData.email})
+        <button class="remove-user">제거</button>
+    `;
+    userList.appendChild(listItem);
+
+    // 제거 버튼 이벤트 추가
+    listItem.querySelector('.remove-user').addEventListener('click', function() {
+        removeUser(userId);
+    });
+}
+
+// 회원 제거 함수
+function removeUser(userId) {
+    // 데이터베이스에서 회원 제거
+    firebase.database().ref('users/' + userId).remove()
+        .then(() => {
+            alert('회원이 제거되었습니다.');
+            // 화면에서 항목 제거
+            const listItem = document.querySelector(`li[data-id="${userId}"]`);
+            listItem.remove();
+        })
+        .catch((error) => {
+            console.error('회원 제거 중 오류 발생:', error);
+        });
+}
+
+// 초기 회원 목록 로드
+function loadUserList() {
+    const userList = document.querySelector('.user-list ul');
+    userList.innerHTML = ''; // 기존 목록 초기화
+
+    firebase.database().ref('users').once('value', (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const userId = childSnapshot.key;
+            const userData = childSnapshot.val();
+            addUserToList(userId, userData);
+        });
+    });
+}
+
 // 초기 상품 목록 로드
 function loadProductList() {
     const productList = document.querySelector('.product-list ul');
@@ -304,7 +350,8 @@ function loadProductList() {
     });
 }
 
-// 초기 로드 시 상품 목록 불러오기
+// 초기 로드 시 상품 및 회원 목록 불러오기
 document.addEventListener('DOMContentLoaded', function() {
     loadProductList();
+    loadUserList();
 });
