@@ -7,7 +7,39 @@
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/header.css">
 </head>
-<body>
+<body><div id="edit-product-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>상품 수정</h3>
+        <form id="edit-product-form">
+            <div>
+                <label for="edit-product-name">상품명:</label>
+                <input type="text" id="edit-product-name" name="edit-product-name" required>
+            </div>
+            <div>
+                <label for="edit-product-price">가격:</label>
+                <input type="number" id="edit-product-price" name="edit-product-price" required>
+            </div>
+            <div>
+                <label for="edit-product-description">설명:</label>
+                <textarea id="edit-product-description" name="edit-product-description" required></textarea>
+            </div>
+            <div>
+                <label for="edit-product-quantity">갯수:</label>
+                <input type="number" id="edit-product-quantity" name="edit-product-quantity" min="1" required>
+            </div>
+            <div>
+                <label for="edit-product-image">상품 이미지:</label>
+                <input type="file" id="edit-product-image" name="edit-product-image" accept="image/*">
+            </div>
+            <div>
+                <img id="edit-image-preview" src="#" alt="이미지 미리보기" style="display: none; max-width: 200px; max-height: 200px;">
+            </div>
+            <button type="submit">상품 수정</button>
+            <div id="loading-spinner" class="spinner" style="display: none;"></div>
+        </form>
+    </div>
+</div>
     <div class="container">
     <header>
         <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
@@ -59,9 +91,16 @@
                 </form>
                 <div class="product-list">
                     <h4>상품 목록</h4>
+                    <button id="select-all-products">전체 선택/해제</button>
+                    <button id="remove-selected-products">선택된 상품 제거</button>
                     <ul>
                         <!-- 추가 상품 항목들 -->
                     </ul>
+                </div>
+                <div>
+                    <h4>CSV 파일로 상품 추가</h4>
+                    <input type="file" id="csv-file" accept=".csv">
+                    <button id="upload-csv">저장</button>
                 </div>
             </div>
             <div class="section">
