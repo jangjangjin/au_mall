@@ -1,91 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>결제 페이지</title>
-    <link rel="stylesheet" href="../css/payment.css">
-    <link rel="stylesheet" href="../css/header.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/payment.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+  </head>
+  <body>
     <div class="container">
-    <header>
-        <a href="/index.html" class="logo"><h1>쇼핑몰</h1></a>
+      <header>
+        <a href="../index.html" class="logo"><h1>쇼핑몰</h1></a>
         <nav>
-            <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-            <ul>
-                <li><a href="/index.html">홈</a></li>
-                <li><a href="/html/login.html">로그인</a></li>
-                <li><a href="/html/signup.html">회원가입</a></li>
-                <li><a href="/html/product-list.html">상품 목록</a></li>
-                <li><a href="/html/cart.html">장바구니</a></li>
-                <li><a href="/html/mypage.html">마이페이지</a></li>
-                <li><a href="/html/customer-service.html">고객 서비스</a></li>
-                <li><a href="/html/admin.html">관리자 페이지</a></li>
-            </ul>
+          <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+          <ul>
+            <li><a href="../index.html">홈</a></li>
+            <li><a href="./login.html">로그인</a></li>
+            <li><a href="./signup.html">회원가입</a></li>
+            <li><a href="./product-list.html">상품 목록</a></li>
+            <li><a href="./cart.html">장바구니</a></li>
+            <li><a href="./mypage.html">마이페이지</a></li>
+            <li><a href="./customer-service.html">고객 서비스</a></li>
+            <li><a href="./admin.html">관리자 페이지</a></li>
+          </ul>
         </nav>
-    </header>
+      </header>
 
-    <main>
+      <main>
         <h2>결제 페이지</h2>
         <div class="order-summary">
-            <h3>주문한 상품</h3>
-            <div class="order-item">
-                <img src="https://via.placeholder.com/100" alt="상품 이미지 1">
-                <div class="item-info">
-                    <h4>상품명 1</h4>
-                    <p>₩10,000</p>
-                    <p>수량: 1</p>
-                </div>
+          <h3>주문한 상품</h3>
+          <div class="order-item">
+            <img src="https://via.placeholder.com/100" alt="상품 이미지 1" />
+            <div class="item-info">
+              <h4>상품명 1</h4>
+              <p>₩10,000</p>
+              <p>수량: 1</p>
             </div>
-            <!-- 추가 상품 항목들 -->
+          </div>
+          <!-- 추가 상품 항목들 -->
         </div>
         <div class="shipping-info">
-            <h3>배송 정보</h3>
-            <form id="shipping-form">
-                <div>
-                    <label for="name">이름:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div>
-                    <label for="address">주소:</label>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                <div>
-                    <label for="phone">전화번호:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-            </form>
+          <h3>배송 정보</h3>
+          <form id="shipping-form">
+            <div>
+              <label for="name">이름:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div>
+              <label for="address">주소:</label>
+              <input type="text" id="address" name="address" required />
+            </div>
+            <div>
+              <label for="phone">전화번호:</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+          </form>
         </div>
         <div class="payment-method">
-            <h3>결제 방법</h3>
-            <form id="payment-form">
-                <div>
-                    <input type="radio" id="credit-card" name="payment-method" value="credit-card" checked>
-                    <label for="credit-card">신용카드</label>
-                </div>
-                <div>
-                    <input type="radio" id="bank-transfer" name="payment-method" value="bank-transfer">
-                    <label for="bank-transfer">계좌이체</label>
-                </div>
-                <div>
-                    <input type="radio" id="paypal" name="payment-method" value="paypal">
-                    <label for="paypal">PayPal</label>
-                </div>
-            </form>
+          <h3>결제 방법</h3>
+          <form id="payment-form">
+            <div>
+              <input
+                type="radio"
+                id="credit-card"
+                name="payment-method"
+                value="credit-card"
+                checked
+              />
+              <label for="credit-card">신용카드</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="bank-transfer"
+                name="payment-method"
+                value="bank-transfer"
+              />
+              <label for="bank-transfer">계좌이체</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="paypal"
+                name="payment-method"
+                value="paypal"
+              />
+              <label for="paypal">PayPal</label>
+            </div>
+          </form>
         </div>
         <div class="order-total">
-            <h3>총 결제 금액: <span id="total-price">₩10,000</span></h3>
-            <button id="place-order">주문하기</button>
+          <h3>총 결제 금액: <span id="total-price">₩10,000</span></h3>
+          <button id="place-order">주문하기</button>
         </div>
-    </main>
+      </main>
 
-    <footer>
+      <footer>
         <p>&copy; 2023 쇼핑몰. All rights reserved.</p>
-    </footer>
+      </footer>
     </div>
 
     <script src="../javascript/payment.js"></script>
     <script src="../javascript/header.js"></script>
-</body>
+  </body>
 </html>
