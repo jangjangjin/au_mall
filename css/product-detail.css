@@ -1,19 +1,53 @@
-/* product-detail.css */
+/* 기본 스타일 설정 */
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-size: 14px;
+  color: #222;
+  background-color: #fff;
+}
+/* 헤더 스타일 */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #ebebeb;
+  padding: 0 40px;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #222;
+  font-size: 18px;
+  font-weight: bold;
+}
 main {
-  padding: 2rem;
-  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 40px;
+  flex: 1;
 }
 
 .product-detail {
@@ -89,8 +123,105 @@ button {
 }
 
 footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 1rem;
+  background-color: #fff;
+  color: #222;
+  text-align: left;
+  padding: 40px;
+  font-size: 13px;
+}
+
+/* Footer 전체 스타일 */
+.service_area {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* 고객센터 영역 */
+.customer_service {
+  flex: 1;
+  margin-right: 40px;
+}
+
+.service_title {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.sevice_tel {
+  margin-left: 8px;
+  color: #000;
+  text-decoration: none;
+}
+
+.service_time {
+  margin-bottom: 8px;
+}
+
+.time_term {
+  font-size: 13px;
+  color: #6b6b6b;
+  line-height: 1.4;
+}
+
+.service_noti {
+  font-size: 12px;
+  color: #6b6b6b;
+  margin-bottom: 16px;
+}
+
+.service_btn_box {
+  margin-top: 12px;
+}
+
+.btn.solid.small {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #222;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Footer 메뉴 영역 */
+.footer_menu {
+  display: flex;
+  flex: 2;
+}
+
+.menu_box {
+  flex: 1;
+  margin-right: 40px;
+}
+
+.menu_title {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.menu_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu_item {
+  margin-bottom: 12px;
+}
+
+.menu_link {
+  font-size: 14px;
+  color: #6b6b6b;
+  text-decoration: none;
+}
+
+.menu_link:hover {
+  color: #000;
 }

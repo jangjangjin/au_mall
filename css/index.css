@@ -124,7 +124,6 @@ nav ul li a {
 main {
   display: flex; /* 부모 요소를 flex로 설정 */
   justify-content: center; /* 가로 중앙 정렬 */
-
   padding: 40px;
   flex: 1;
 }
