@@ -265,6 +265,26 @@ function isValidFirebaseStorageUrl(url) {
     return pattern.test(url);
 }
 
+// 회원 목록에 항목 추가
+function addUserToList(userId, userData) {
+    const userList = document.querySelector('.user-list ul');
+    const listItem = document.createElement('li');
+    listItem.setAttribute('data-id', userId);
+    listItem.innerHTML = `
+        <div>
+            <strong>${userData.username}</strong>
+            <p>${userData.email}</p>
+            <button class="remove-user">제거</button>
+        </div>
+    `;
+    userList.appendChild(listItem);
+
+    // 제거 버튼 이벤트 추가
+    listItem.querySelector('.remove-user').addEventListener('click', function() {
+        removeUser(userId);
+    });
+}
+
 // 초기 회원 목록 로드
 function loadUserList() {
     const userList = document.querySelector('.user-list ul');
@@ -278,6 +298,8 @@ function loadUserList() {
         });
     });
 }
+
+
 
 // CSV 파일 업로드 이벤트 처리
 let csvData = null;
