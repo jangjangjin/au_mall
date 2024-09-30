@@ -36,6 +36,16 @@ function initializeSlider() {
   setInterval(nextSlide, 3000);
   showSlide(currentIndex);
 }
+
+document.getElementById("logout-button").addEventListener("click", function () {
+  firebase.auth().signOut().then(() => {
+    alert("로그아웃 성공!");
+    window.location.href = "./index.html";
+  }).catch((error) => {
+    alert("로그아웃 실패: " + error.message);
+    console.error("로그아웃 중 오류 발생:", error);
+  });
+});
 // 추천 상품 리스트 추가
 function displayProducts() {
   const productList = document.querySelector(".product-list");

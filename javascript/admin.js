@@ -265,6 +265,19 @@ function isValidFirebaseStorageUrl(url) {
     return pattern.test(url);
 }
 
+// 회원 제거 함수 추가
+function removeUser(userId) {
+    firebase.database().ref('users/' + userId).remove()
+        .then(() => {
+            const listItem = document.querySelector(`li[data-id="${userId}"]`);
+            if (listItem) listItem.remove();
+            alert('회원이 제거되었습니다.');
+        })
+        .catch((error) => {
+            console.error('회원 제거 중 오류 발생:', error);
+        });
+}
+
 // 회원 목록에 항목 추가
 function addUserToList(userId, userData) {
     const userList = document.querySelector('.user-list ul');
