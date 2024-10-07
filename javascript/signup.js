@@ -14,6 +14,9 @@ document
       return;
     }
 
+    // cart 변수를 초기화 (빈 배열 또는 객체로 설정)
+    const cart = [];
+
     // Firebase Authentication을 사용하여 회원가입
     firebase
       .auth()
@@ -26,7 +29,7 @@ document
         const userData = {
           username: username,
           email: email,
-          cart: cart,
+          cart: cart, // cart 변수를 추가
         };
 
         firebase
