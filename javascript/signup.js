@@ -14,9 +14,6 @@ document
       return;
     }
 
-    // cart 변수를 초기화 (빈 배열 또는 객체로 설정)
-    const cart = [];
-
     // Firebase Authentication을 사용하여 회원가입
     firebase
       .auth()
@@ -27,9 +24,8 @@ document
 
         // 추가 사용자 정보를 데이터베이스에 저장
         const userData = {
-          username: username,
-          email: email,
-          cart: cart, // cart 변수를 추가
+          email: user.email,
+          username: username // 사용자 이름 저장
         };
 
         firebase
@@ -37,7 +33,6 @@ document
           .ref("users/" + user.uid)
           .set(userData)
           .then(() => {
-            console.log("데이터가 성공적으로 저장되었습니다:", userData);
             alert("회원가입이 완료되었습니다!");
             document.getElementById("signup-form").reset(); // 폼 초기화
             window.location.href = "/html/login.html";

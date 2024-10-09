@@ -1,6 +1,4 @@
-// 페이지가 로드될 때 사용자 정보를 가져와서 표시
-window.onload = function() {
-    // Firebase에서 로그인 상태 변화를 감지
+  // Firebase에서 로그인 상태 변화를 감지
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // 사용자 정보가 있을 경우
@@ -8,6 +6,7 @@ window.onload = function() {
             const userRef = firebase.database().ref('users/' + user.uid);
             userRef.once('value').then((snapshot) => {
                 const userData = snapshot.val();
+                console.log("User Data:", userData); // 사용자 데이터 확인
                 document.querySelector('.profile-info h3').textContent = userData.username || '닉네임 없음';
                 document.querySelector('.profile-info p').textContent = '이메일: ' + user.email;
 
@@ -43,4 +42,3 @@ window.onload = function() {
         alert('아이디 및 비밀번호가 수정되었습니다.');
         // 아이디 및 비밀번호 수정 처리 코드 추가
     });
-};

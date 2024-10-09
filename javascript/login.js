@@ -13,11 +13,9 @@ document
       .then((userCredential) => {
         // 로그인 성공
         const user = userCredential.user;
-        saveUserData(user, () => {
-          alert("로그인 성공!");
-          // 로그인 후 할 작업 (예: 사용자 페이지로 이동)
-          window.location.href = "../index.html";
-        });
+        alert("로그인 성공!");
+        // 로그인 후 할 작업 (예: 사용자 페이지로 이동)
+        window.location.href = "../index.html";
       })
       .catch((error) => {
         // 로그인 실패
@@ -25,19 +23,6 @@ document
         console.error("로그인 중 오류 발생:", error);
       });
   });
-
-// 사용자 데이터를 Firebase Realtime Database에 저장하는 함수
-function saveUserData(user, callback) {
-  const userRef = firebase.database().ref('users/' + user.uid);
-  userRef.set({
-    email: user.email,
-    username: user.displayName || 'Anonymous'
-  }).then(() => {
-    if (callback) callback();
-  }).catch((error) => {
-    console.error("사용자 데이터 저장 중 오류 발생:", error);
-  });
-}
 
 // Firebase Google 로그인 설정
 const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -51,9 +36,8 @@ document
       .then((result) => {
         // 로그인 성공
         const user = result.user;
-        saveUserData(user, () => {
-          window.location.href = "../index.html";
-        });
+        alert("구글 로그인 성공!");
+        window.location.href = "../index.html";
       })
       .catch((error) => {
         // 로그인 실패
