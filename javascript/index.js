@@ -1,22 +1,83 @@
 // 슬라이더 기능
-let slideIndex = 0;
-showSlides();
+function initializeSlider() {
+  let currentIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+  const totalSlides = slides.length;
+  const dots = document.querySelectorAll(".dot");
 
-function showSlides() {
-  const slides = document.getElementsByClassName("slide");
-  const dots = document.getElementsByClassName("dot");
-  
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) { slideIndex = 1; }    
-  
-  for (let j = 0; j < dots.length; j++) {
-    dots[j].className = dots[j].className.replace(" active", "");
+  function showSlide(index) {
+    const slidesContainer = document.querySelector(".slides");
+    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot) => dot.classList.remove("active"));
+    dots[index].classList.add("active");
   }
 
-  slides[slideIndex - 1].style.display = "block";  
-  dots[slideIndex - 1].className += " active";  
-  setTimeout(showSlides, 3000); // 3초마다 슬라이드 변경
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+  }
+
+  document.querySelector(".next").addEventListener("click", nextSlide);
+  document.querySelector(".prev").addEventListener("click", prevSlide);
+
+  dots.forEach((dot, index) => {
+    dot.setAttribute("data-index", index);
+    dot.addEventListener("click", function () {
+      currentIndex = parseInt(this.getAttribute("data-index"));
+      showSlide(currentIndex);
+    });
+  });
+
+  setInterval(nextSlide, 3000);
+  showSlide(currentIndex);
 }
+
+document.getElementById("logout-button").addEventListener("click", function () {
+  firebase.auth().signOut().then(() => {
+    alert("로그아웃 성공!");
+    window.location.href = "./index.html";
+  }).catch((error) => {
+    alert("로그아웃 실패: " + error.message);
+    console.error("로그아웃 중 오류 발생:", error);
+  });
+});
+// 추천 상품 리스트 추가
+function displayProducts() {
+  const productList = document.querySelector(".product-list");
+  const dbRef = firebase.database().ref("products");
+  dbRef
+    .limitToFirst(10)
+    .once("value")
+    .then((snapshot) => {
+      productList.innerHTML = "";
+      snapshot.forEach((childSnapshot) => {
+        const product = childSnapshot.val();
+        const productId = childSnapshot.key;
+        const productItem = document.createElement("div");
+        productItem.className = "product-item";
+        productItem.innerHTML = `
+            <a href="html/product-detail.html?id=${productId}">
+              <img src="${
+                product.imageUrl || "https://via.placeholder.com/200"
+              }" alt="${product.name}">
+              <h3>${product.name}</h3>
+              <p>₩${Number(product.price).toLocaleString()}</p>
+            </a>
+          `;
+        productList.appendChild(productItem);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching products: ", error);
+    });
+}
+function onDOMLoaded() {
+  initializeSlider();
+  displayProducts();
+}
+document.addEventListener("DOMContentLoaded", onDOMLoaded);
