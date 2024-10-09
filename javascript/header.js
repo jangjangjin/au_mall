@@ -1,3 +1,8 @@
+function toggleMenu() {
+  const navUl = document.querySelector('nav ul');
+  navUl.classList.toggle('show');
+}
+
 firebase.auth().onAuthStateChanged((user) => {
     const loginNavItem = document.getElementById("login-link");
     const signupNavItem = document.getElementById("signup-link");
