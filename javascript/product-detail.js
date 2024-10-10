@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// 상품 상세 정보 설정
+// 상품 상세 정보 설정 및 이미지 url 추가
 function setProductDetails(product) {
   document.querySelector(".product-detail img").src =
     product.imageUrl || "https://via.placeholder.com/400";
