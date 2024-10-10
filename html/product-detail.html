@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../css/header.css" />
   </head>
   <body>
+    <!-- 로딩 스피너 -->
+    <div id="loading-spinner" style="display: none">
+      <div class="spinner"></div>
+      <p>상품 업데이트 중...</p>
+    </div>
     <div class="container">
       <header>
         <a href="../index.html" class="logo"><h1>쇼핑몰</h1></a>
@@ -31,13 +36,10 @@
         <div class="product-detail">
           <img src="https://via.placeholder.com/400" alt="상품 이미지" />
           <div class="product-info">
-            <h2>상품명</h2>
-            <p class="price">₩50,000</p>
-            <p class="description">
-              이것은 상품의 상세 설명입니다. 이 상품은 매우 훌륭한 품질을
-              자랑합니다.
-            </p>
-            <p>재고: <span id="stock">10</span>개</p>
+            <h2></h2>
+            <p class="price"></p>
+            <p class="description"></p>
+            <p><span id="stock"></span></p>
             <div class="quantity-selector">
               <button id="decrease-quantity">-</button>
               <input type="text" id="quantity" value="1" readonly />
@@ -95,13 +97,20 @@
                   <a href="/notice" class="menu_link">공지사항</a>
                 </li>
                 <li class="menu_item">
-                  <a href="/about" target="_blank" class="menu_link">서비스 소개</a>
+                  <a href="/about" target="_blank" class="menu_link"
+                    >서비스 소개</a
+                  >
                 </li>
                 <li class="menu_item">
-                  <a href="/showroom" class="menu_link" target="_blank">스토어 안내</a>
+                  <a href="/showroom" class="menu_link" target="_blank"
+                    >스토어 안내</a
+                  >
                 </li>
                 <li class="menu_item">
-                  <a href="/about/seller_reception" target="_blank" class="menu_link"
+                  <a
+                    href="/about/seller_reception"
+                    target="_blank"
+                    class="menu_link"
                     >판매자 방문접수</a
                   >
                 </li>
@@ -119,3 +128,5 @@
 
     <script src="../javascript/product-detail.js"></script>
     <script src="../javascript/header.js"></script>
+  </body>
+</html>
