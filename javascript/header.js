@@ -23,6 +23,16 @@ function updateMenuBasedOnAuth(user) {
   }
 }
 
+document.getElementById("logout-button").addEventListener("click", function () {
+  firebase.auth().signOut().then(() => {
+    alert("로그아웃 성공!");
+    window.location.href = "../index.html";
+  }).catch((error) => {
+    alert("로그아웃 실패: " + error.message);
+    console.error("로그아웃 중 오류 발생:", error);
+  });
+});
+
 // Firebase에서 로그인 상태 변화를 감지
 window.onload = function() {
 firebase.auth().onAuthStateChanged(function(user) {
