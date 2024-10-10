@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.log("추가할 수량:", addQuantity); // 추가할 수량 확인
 
                     const totalPrice = product.price * addQuantity; // 총 가격 계산
+                    const productImage =
+                      product.imageUrl || "https://via.placeholder.com/100"; // 이미지 URL
 
                     if (snapshot.exists()) {
                       // 같은 상품이 이미 있을 경우 수량 및 가격 업데이트
@@ -113,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           productName: product.name,
                           productPrice: product.price,
                           productDescription: product.description,
+                          productImage: productImage, // 상품 이미지 URL 저장
                           quantity: addQuantity,
                           totalPrice: totalPrice, // 총 가격 저장
                           addedAt: new Date().toISOString(),
