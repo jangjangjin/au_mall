@@ -68,21 +68,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     const addQuantity = quantity; // 선택한 수량을 저장
                     console.log("추가할 수량:", addQuantity); // 추가할 수량 확인
 
+                    const totalPrice = product.price * addQuantity; // 총 가격 계산
+
                     if (snapshot.exists()) {
-                      // 같은 상품이 이미 있을 경우 수량만 업데이트
+                      // 같은 상품이 이미 있을 경우 수량 및 가격 업데이트
                       const cartItemKey = Object.keys(snapshot.val())[0];
                       const cartItem = snapshot.val()[cartItemKey];
                       const newQuantity = cartItem.quantity + addQuantity;
+                      const newTotalPrice = cartItem.totalPrice + totalPrice; // 총 가격 업데이트
 
                       console.log(
-                        "장바구니에 있는 상품 수량 업데이트:",
-                        newQuantity
-                      ); // 수량 업데이트 확인
+                        "장바구니에 있는 상품 수량 및 가격 업데이트:",
+                        newQuantity,
+                        newTotalPrice
+                      ); // 수량 및 가격 업데이트 확인
 
-                      // 장바구니 수량 업데이트
+                      // 장바구니 수량 및 가격 업데이트
                       cartRef
                         .child(cartItemKey)
-                        .update({ quantity: newQuantity })
+                        .update({
+                          quantity: newQuantity,
+                          totalPrice: newTotalPrice,
+                        })
                         .then(() => {
                           alert("장바구니에 상품 수량이 업데이트되었습니다.");
 
@@ -107,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           productPrice: product.price,
                           productDescription: product.description,
                           quantity: addQuantity,
+                          totalPrice: totalPrice, // 총 가격 저장
                           addedAt: new Date().toISOString(),
                         })
                         .then(() => {
