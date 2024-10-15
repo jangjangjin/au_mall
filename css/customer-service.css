@@ -196,3 +196,46 @@ footer {
 .menu_link:hover {
   color: #000;
 }
+
+details {
+  font-size: 15px;
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px;
+  margin: 15px;
+}
+
+details span {
+  text-align: center;
+  font-weight: bold;
+}
+
+details summary {
+  list-style: none;
+}
+
+details summary::after {
+  content: "▲";
+  position: absolute;
+  right: 0;
+  transition: transform 0.3s;
+}
+
+details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+h5 {
+  font-size: 20px;
+}
+.pText {
+  color: #ff0000;
+}
+
+details ul li {
+  list-style: none;
+}
+
+details ul li div {
+  background-color: #fafafa;
+}

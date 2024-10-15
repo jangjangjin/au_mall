@@ -41,7 +41,7 @@ document
         // 사용자 정보를 리얼타임 데이터베이스에 저장
         const userData = {
           email: user.email,
-          username: user.displayName || "기본 값" // 사용자가 이름을 제공하지 않은 경우 기본값 사용
+          username: user.displayName || "기본 값", // 사용자가 이름을 제공하지 않은 경우 기본값 사용
         };
 
         firebase
@@ -63,8 +63,7 @@ document
       });
   });
 
-
 // 회원가입 페이지로 이동
 document.getElementById("signup-button").addEventListener("click", function () {
-  window.location.href = "/html/signup.html";
+  window.location.href = "./signup.html";
 });

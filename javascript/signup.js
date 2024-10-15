@@ -25,7 +25,7 @@ document
         // 추가 사용자 정보를 데이터베이스에 저장
         const userData = {
           email: user.email,
-          username: username // 사용자 이름 저장
+          username: username, // 사용자 이름 저장
         };
 
         firebase
@@ -35,7 +35,7 @@ document
           .then(() => {
             alert("회원가입이 완료되었습니다!");
             document.getElementById("signup-form").reset(); // 폼 초기화
-            window.location.href = "/html/login.html";
+            window.location.href = "./login.html";
           })
           .catch((error) => {
             console.error("추가 사용자 정보 저장 중 오류 발생:", error);

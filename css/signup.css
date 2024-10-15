@@ -164,3 +164,57 @@ footer {
 .menu_link:hover {
   color: #000;
 }
+
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+form div {
+  margin-bottom: 1rem;
+}
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #4e387e;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(78, 56, 126, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+form button:hover {
+  background-color: #5d4a8e;
+  box-shadow: 0 6px 8px rgba(78, 56, 126, 0.4);
+  transform: translateY(-2px);
+}
+
+form button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(78, 56, 126, 0.2);
+}
