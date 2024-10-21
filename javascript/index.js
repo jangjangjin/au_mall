@@ -68,6 +68,7 @@ function displayProducts() {
       console.error("Error fetching products: ", error);
     });
 }
+
 function onDOMLoaded() {
   initializeSlider();
   displayProducts();

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* 기본 스타일 설정 */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -49,7 +56,7 @@ nav ul li a {
 .slider {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 480px;
   overflow: hidden;
 }
 
@@ -65,8 +72,8 @@ nav ul li a {
 
 .slide img {
   width: 100%;
-  height: 480px;
-  object-fit: cover;
+  height: 100%; /* 슬라이더 높이에 맞춰 조정 */
+  object-fit: contain; /* 비율 유지하며 자르지 않음 */
 }
 
 /* 이전/다음 버튼 */
@@ -75,7 +82,7 @@ nav ul li a {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
   color: #000;
   border: none;
   padding: 1rem;
@@ -134,61 +141,91 @@ h2 {
   padding-top: 15px;
   flex: 1;
 }
+
+.section-header {
+  font-family: 'Pretendard-Regular';
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f4f4f4; /* 배경 색상 추가 */
+  border-bottom: 3px solid #3498db; /* 하단에 포인트 색상 추가 */
+  margin-bottom: 40px; /* 하단에 여백 추가 */
+}
+
+.section-header h2 {
+  font-size: 36px; /* 제목 크기 조정 */
+  font-weight: bold; /* 두꺼운 글씨체 */
+  color: #2c3e50; /* 글씨 색상 */
+  letter-spacing: 2px; /* 글자 간격 조정 */
+  text-transform: uppercase; /* 모든 글자를 대문자로 */
+  margin-bottom: 10px; /* 제목과 설명 사이 여백 */
+}
+
+.section-header p {
+  font-size: 18px; /* 설명 글씨 크기 조정 */
+  color: #7f8c8d; /* 설명 글씨 연한 색상 */
+  letter-spacing: 1px; /* 글자 간격 */
+  margin: 0; /* 여백 초기화 */
+}
+
 .product-list {
+  font-family: 'Pretendard-Regular';
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5개의 열 */
-  grid-template-rows: repeat(2, auto); /* 2개의 행 */
-  gap: 40px;
-  justify-content: center; /* grid 자체를 중앙에 배치 */
+  grid-template-columns: repeat(5, 1fr); /* 가로로 5개의 열 */
+  gap: 30px; /* 그리드 아이템 간격 */
+  justify-items: center; /* 아이템을 중앙에 정렬 */
+  padding: 40px;
+  background-color: #f9f9f9; /* 리스트 배경색 추가 */
 }
+
 .product-item {
-  border: none;
-  padding: 0;
-  text-align: left;
-  transition: transform 0.3s;
-  box-sizing: border-box;
-  width: 230px; /* 그리드 아이템의 너비 고정 */
-}
-.product-item img {
+  background-color: #fff; /* 상품 카드 배경 */
+  border-radius: 10px; /* 둥근 모서리 */
+  overflow: hidden; /* 이미지가 넘치지 않도록 처리 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  transition: transform 0.3s, box-shadow 0.3s; /* 부드러운 애니메이션 */
+  text-align: center; /* 중앙 정렬 */
   width: 100%;
-  height: 230px;
-  object-fit: cover;
-  border-radius: 10px;
+  max-width: 230px; /* 그리드 아이템의 최대 너비 고정 */
 }
+
 .product-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px); /* 호버 시 살짝 올라가는 효과 */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
 }
 
 .product-item img {
   width: 100%;
   height: 230px;
   object-fit: cover;
-  border-radius: 10px;
+  border-bottom: 2px solid #3498db; /* 이미지 아래에 선 추가 */
 }
 
 .product-item a {
   text-decoration: none;
   color: inherit;
+  display: block; /* 링크 영역을 카드 전체로 */
+  padding: 15px;
 }
 
 .product-item h3 {
-  margin: 10px 0 5px;
-  font-size: 13px;
-  font-weight: normal;
+  margin: 10px 0;
+  font-size: 16px; /* 글씨 크기 조정 */
+  font-weight: 600; /* 굵게 */
   color: #333;
 }
 
 .product-item .brand {
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 5px;
+  color: #888; /* 브랜드명에 연한 색상 */
+  margin-bottom: 8px;
 }
 
 .product-item p {
   margin: 0;
-  color: #000;
+  font-size: 18px; /* 가격 정보 크기 확대 */
   font-weight: bold;
-  font-size: 15px;
+  color: #000;
 }
 
 footer {
