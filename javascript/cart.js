@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h3>${item.productName}</h3>
                     <p>₩${item.productPrice.toLocaleString()}</p>
                     <div class="item-quantity">
-                        <button class="quantity-btn" data-action="decrease" data-key="${key}">-</button>
+                      
                         <span class="quantity">${item.quantity}</span>
-                        <button class="quantity-btn" data-action="increase" data-key="${key}">+</button>
+                        
                     </div>
                 </div>
                 <button class="remove-item" data-key="${key}">제거</button>
