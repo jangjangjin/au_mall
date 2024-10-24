@@ -13,6 +13,19 @@
       <div class="spinner"></div>
       <p>상품 업데이트 중...</p>
     </div>
+
+    <!-- 모달창 -->
+    <div id="modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="close" id="modal-close">&times;</span>
+        <p>
+          장바구니에 상품이 추가되었습니다.
+          <br />장바구니 페이지로 이동하시겠습니까?
+        </p>
+        <button id="modal-yes">예</button>
+        <button id="modal-no">아니요</button>
+      </div>
+    </div>
     <div class="container">
       <header>
         <a href="../index.html" class="logo"><h1>쇼핑몰</h1></a>
@@ -46,7 +59,6 @@
               <button id="increase-quantity">+</button>
             </div>
             <button id="add-to-cart">장바구니에 추가</button>
-            <button id="buy-now">결제하기</button>
             <button id="view-reviews">리뷰 보기</button>
           </div>
         </div>

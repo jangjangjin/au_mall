@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("상품 ID:", productId); // 상품 ID 확인
 
   const loadingSpinner = document.getElementById("loading-spinner");
+  const modal = document.getElementById("modal");
+  const modalClose = document.getElementById("modal-close");
+  const modalYes = document.getElementById("modal-yes");
+  const modalNo = document.getElementById("modal-no");
 
   if (productId) {
     // 로딩 스피너 표시
@@ -93,13 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
                           totalPrice: newTotalPrice,
                         })
                         .then(() => {
-                          alert("장바구니에 상품 수량이 업데이트되었습니다.");
-
+                          showModal();
                           // 상품의 수량 업데이트
                           updateStock(dbRef, product, addQuantity);
-
-                          // 페이지 새로 고침
-                          location.reload();
                         })
                         .catch((error) => {
                           console.error(
@@ -121,13 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
                           addedAt: new Date().toISOString(),
                         })
                         .then(() => {
-                          alert("장바구니에 상품이 추가되었습니다.");
-
+                          showModal();
                           // 상품의 수량 업데이트
                           updateStock(dbRef, product, addQuantity);
-
-                          // 페이지 새로 고침
-                          location.reload();
                         })
                         .catch((error) => {
                           console.error(
@@ -155,11 +151,25 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // 즉시 구매 버튼 클릭 이벤트
-  document.getElementById("buy-now").addEventListener("click", function () {
-    console.log("즉시 구매 클릭"); // 즉시 구매 버튼 클릭 확인
-    window.location.href = "payment.html";
-  });
+  // 모달 보여주기
+  function showModal() {
+    modal.style.display = "flex";
+  }
+
+  // 모달 닫기
+  modalClose.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // 예 버튼 클릭 시 장바구니 페이지로 이동
+  modalYes.onclick = function () {
+    window.location.href = "./cart.html";
+  };
+
+  // 아니요 버튼 클릭 시 모달 닫기
+  modalNo.onclick = function () {
+    modal.style.display = "none";
+  };
 
   // 리뷰 보기 버튼 클릭 이벤트
   document
