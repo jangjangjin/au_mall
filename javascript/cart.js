@@ -39,10 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }" alt="${item.productName}" />
                 <div class="item-info">
                     <h3>${item.productName}</h3>
+                    <p>${item.productDescription}</p>
                     <p>₩${item.productPrice.toLocaleString()}</p>
                     <div class="item-quantity">
                       
-                        <span class="quantity">${item.quantity}</span>
+                        <span class="quantity">${item.quantity}개</span>
                         
                     </div>
                 </div>
@@ -137,9 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // 결제 버튼 이벤트 처리
+      // document
+      //   .getElementById("checkout")
+      //   .addEventListener("click", processPayment);
       document
         .getElementById("checkout")
-        .addEventListener("click", processPayment);
+        .addEventListener("click", function () {
+          window.location.href = "./payment.html";
+        });
     } else {
       alert("로그인 해주세요.");
       window.location.href = "./login.html";
@@ -194,130 +200,130 @@ function getSelectedItems() {
   return selectedItems;
 }
 
-// 결제 처리 함수
-async function processPayment() {
-  // 로그인 체크
-  const user = firebase.auth().currentUser;
-  if (!user) {
-    alert("로그인이 필요합니다!");
-    window.location.href = "./login.html";
-    return;
-  }
+// // 결제 처리 함수
+// async function processPayment() {
+//   // 로그인 체크
+//   const user = firebase.auth().currentUser;
+//   if (!user) {
+//     alert("로그인이 필요합니다!");
+//     window.location.href = "./login.html";
+//     return;
+//   }
 
-  // 선택된 상품 확인
-  const selectedItems = getSelectedItems();
-  if (selectedItems.length === 0) {
-    alert("선택된 상품이 없습니다.");
-    return;
-  }
+//   // 선택된 상품 확인
+//   const selectedItems = getSelectedItems();
+//   if (selectedItems.length === 0) {
+//     alert("선택된 상품이 없습니다.");
+//     return;
+//   }
 
-  // 총 결제 금액 계산
-  const totalAmount = selectedItems.reduce((total, item) => {
-    return total + item.productPrice * item.quantity;
-  }, 0);
+//   // 총 결제 금액 계산
+//   const totalAmount = selectedItems.reduce((total, item) => {
+//     return total + item.productPrice * item.quantity;
+//   }, 0);
 
-  // 주문 번호 생성
-  const now = new Date();
-  const merchantUid = `IMP${now.getHours()}${now.getMinutes()}${now.getSeconds()}${now.getMilliseconds()}`;
+//   // 주문 번호 생성
+//   const now = new Date();
+//   const merchantUid = `IMP${now.getHours()}${now.getMinutes()}${now.getSeconds()}${now.getMilliseconds()}`;
 
-  // 결제 요청
-  if (confirm("선택하신 상품을 구매하시겠습니까?")) {
-    IMP.request_pay(
-      {
-        pg: "kakaopay.TC0ONETIME",
-        pay_method: "card",
-        merchant_uid: merchantUid,
-        name: `${selectedItems[0].productName} ${
-          selectedItems.length > 1 ? `외 ${selectedItems.length - 1}건` : ""
-        }`,
-        amount: totalAmount,
-        buyer_email: user.email,
-        buyer_name: user.displayName || "구매자",
-      },
-      async function (rsp) {
-        if (rsp.success) {
-          try {
-            // 주문 정보 저장
-            const orderRef = firebase.database().ref("orders/" + user.uid);
-            const cartRef = firebase.database().ref("carts/" + user.uid);
-            const orderItems = selectedItems.map((item) => ({
-              productId: item.productId,
-              productName: item.productName,
-              quantity: item.quantity,
-              price: item.productPrice,
-              totalPrice: item.productPrice * item.quantity,
-            }));
-            const orderData = {
-              orderId: rsp.merchant_uid,
-              orderDate: new Date().toISOString(),
-              paymentId: rsp.imp_uid,
-              totalAmount: rsp.paid_amount,
-              // 구매자 정보 추가
-              buyer: {
-                name: user.displayName || "구매자",
-                email: user.email,
-                uid: user.uid,
-              },
-              // 주문 상품 정보
-              items: orderItems,
-              // 대표 상품명 (for 주문 목록 표시)
-              mainProductName: `${selectedItems[0].productName} ${
-                selectedItems.length > 1
-                  ? `외 ${selectedItems.length - 1}건`
-                  : ""
-              }`,
-              // 주문 상태
-              status: "paid",
-              // 결제 정보
-              payment: {
-                method: rsp.pay_method,
-                pgProvider: rsp.pg_provider,
-                pgTid: rsp.pg_tid,
-                receiptUrl: rsp.receipt_url,
-              },
-            };
+//   // 결제 요청
+//   if (confirm("선택하신 상품을 구매하시겠습니까?")) {
+//     IMP.request_pay(
+//       {
+//         pg: "kakaopay.TC0ONETIME",
+//         pay_method: "card",
+//         merchant_uid: merchantUid,
+//         name: `${selectedItems[0].productName} ${
+//           selectedItems.length > 1 ? `외 ${selectedItems.length - 1}건` : ""
+//         }`,
+//         amount: totalAmount,
+//         buyer_email: user.email,
+//         buyer_name: user.displayName || "구매자",
+//       },
+//       async function (rsp) {
+//         if (rsp.success) {
+//           try {
+//             // 주문 정보 저장
+//             const orderRef = firebase.database().ref("orders/" + user.uid);
+//             const cartRef = firebase.database().ref("carts/" + user.uid);
+//             const orderItems = selectedItems.map((item) => ({
+//               productId: item.productId,
+//               productName: item.productName,
+//               quantity: item.quantity,
+//               price: item.productPrice,
+//               totalPrice: item.productPrice * item.quantity,
+//             }));
+//             const orderData = {
+//               orderId: rsp.merchant_uid,
+//               orderDate: new Date().toISOString(),
+//               paymentId: rsp.imp_uid,
+//               totalAmount: rsp.paid_amount,
+//               // 구매자 정보 추가
+//               buyer: {
+//                 name: user.displayName || "구매자",
+//                 email: user.email,
+//                 uid: user.uid,
+//               },
+//               // 주문 상품 정보
+//               items: orderItems,
+//               // 대표 상품명 (for 주문 목록 표시)
+//               mainProductName: `${selectedItems[0].productName} ${
+//                 selectedItems.length > 1
+//                   ? `외 ${selectedItems.length - 1}건`
+//                   : ""
+//               }`,
+//               // 주문 상태
+//               status: "paid",
+//               // 결제 정보
+//               payment: {
+//                 method: rsp.pay_method,
+//                 pgProvider: rsp.pg_provider,
+//                 pgTid: rsp.pg_tid,
+//                 receiptUrl: rsp.receipt_url,
+//               },
+//             };
 
-            // 트랜잭션 처리
-            await firebase
-              .database()
-              .ref()
-              .update({
-                [`orders/${user.uid}/${rsp.merchant_uid}`]: orderData,
-              });
+//             // 트랜잭션 처리
+//             await firebase
+//               .database()
+//               .ref()
+//               .update({
+//                 [`orders/${user.uid}/${rsp.merchant_uid}`]: orderData,
+//               });
 
-            // 결제 완료된 상품 장바구니에서 제거 및 재고 감소
-            for (const item of selectedItems) {
-              // 장바구니에서 제거
-              await cartRef.child(item.productId).remove();
+//             // 결제 완료된 상품 장바구니에서 제거 및 재고 감소
+//             for (const item of selectedItems) {
+//               // 장바구니에서 제거
+//               await cartRef.child(item.productId).remove();
 
-              // 재고 감소
-              const productRef = firebase
-                .database()
-                .ref("products/" + item.productId);
-              await productRef.transaction((product) => {
-                if (product) {
-                  product.quantity -= item.quantity;
-                }
-                return product;
-              });
-            }
+//               // 재고 감소
+//               const productRef = firebase
+//                 .database()
+//                 .ref("products/" + item.productId);
+//               await productRef.transaction((product) => {
+//                 if (product) {
+//                   product.quantity -= item.quantity;
+//                 }
+//                 return product;
+//               });
+//             }
 
-            alert("결제가 완료되었습니다!");
-            window.location.href = "./cart.html";
-          } catch (error) {
-            console.error("결제 후 처리 중 오류 발생:", error);
-            alert(
-              "결제는 완료되었으나 주문 처리 중 오류가 발생했습니다. 고객센터로 문의해주세요."
-            );
-          }
-        } else {
-          let message = "결제에 실패하였습니다.";
-          if (rsp.error_msg) {
-            message += "\n" + rsp.error_msg;
-          }
-          alert(message);
-        }
-      }
-    );
-  }
-}
+//             alert("결제가 완료되었습니다!");
+//             window.location.href = "./cart.html";
+//           } catch (error) {
+//             console.error("결제 후 처리 중 오류 발생:", error);
+//             alert(
+//               "결제는 완료되었으나 주문 처리 중 오류가 발생했습니다. 고객센터로 문의해주세요."
+//             );
+//           }
+//         } else {
+//           let message = "결제에 실패하였습니다.";
+//           if (rsp.error_msg) {
+//             message += "\n" + rsp.error_msg;
+//           }
+//           alert(message);
+//         }
+//       }
+//     );
+//   }
+// }
