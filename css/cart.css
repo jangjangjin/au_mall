@@ -159,27 +159,6 @@ input[type="checkbox"]:checked::after {
   margin-bottom: 30px;
 }
 
-#select-all-container input[type="checkbox"] {
-  margin-right: 10px; /* 텍스트와의 간격 */
-  vertical-align: middle; /* 체크박스와 레이블 수직 정렬 */
-}
-#select-all-container {
-  display: flex; /* flexbox 사용 */
-  align-items: center; /* 수직 정렬 */
-}
-#select-all-container label {
-  line-height: 20px; /* 체크박스와 같은 높이로 설정 */
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#select-all-container {
-  display: flex; /* flexbox 사용 */
-  align-items: center; /* 수직 정렬 */
-  height: 40px; /* 원하는 높이로 설정 */
-  padding-left: 15px;
-}
-
 footer {
   background-color: #fff;
   color: #222;

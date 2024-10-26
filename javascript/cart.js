@@ -1,9 +1,10 @@
+// IMP 초기화
+var IMP = window.IMP;
+IMP.init("imp67622846"); // 실제 가맹점 식별코드로 변경 필요
+
 document.addEventListener("DOMContentLoaded", function () {
   // 총 결제 금액 초기화
   document.getElementById("total-price").textContent = "₩0";
-
-  // 전체 선택 체크박스 체크
-  document.getElementById("select-all").checked = true;
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -29,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
             cartItemDiv.classList.add("cart-item");
             cartItemDiv.dataset.key = item.productId; // 상품 키 추가
             cartItemDiv.innerHTML = `
-                <input type="checkbox" class="item-checkbox" checked />
                 <img src="${
                   item.productImage || "https://via.placeholder.com/100"
                 }" alt="${item.productName}" />
@@ -38,9 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>${item.productDescription}</p>
                     <p>₩${item.productPrice.toLocaleString()}</p>
                     <div class="item-quantity">
-                      
                         <span class="quantity">${item.quantity}개</span>
-                        
                     </div>
                 </div>
                 <button class="remove-item" data-key="${key}">제거</button>
@@ -57,41 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // 전체 선택 체크박스 이벤트 처리
-      document
-        .getElementById("select-all")
-        .addEventListener("change", function () {
-          const checkboxes = document.querySelectorAll(".item-checkbox");
-          checkboxes.forEach((checkbox) => (checkbox.checked = this.checked));
-          updateTotalPrice();
-        });
-
       // 장바구니 컨테이너 이벤트 위임
       cartContainer.addEventListener("click", async function (e) {
         const target = e.target;
-        const action = target.dataset.action;
         const key = target.dataset.key;
-
-        // 수량 조정
-        if (action === "increase" || action === "decrease") {
-          const quantitySpan = target.parentElement.querySelector(".quantity");
-          let quantity = parseInt(quantitySpan.textContent, 10);
-
-          if (action === "increase") {
-            quantity++;
-          } else if (action === "decrease" && quantity > 1) {
-            quantity--;
-          }
-
-          // 수량 업데이트
-          try {
-            await cartRef.child(key).update({ quantity: quantity });
-            console.log("수량 업데이트 성공:", quantity);
-            updateTotalPrice();
-          } catch (error) {
-            console.error("수량 업데이트 중 오류 발생:", error);
-          }
-        }
 
         // 항목 제거
         if (target.classList.contains("remove-item")) {
@@ -100,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             cartItemDiv.querySelector(".quantity").textContent,
             10
           );
-          const productKey = cartItemDiv.dataset.key;
 
           try {
             // 장바구니에서 제거
@@ -108,9 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("장바구니 항목 제거 성공:", key);
 
             // 재고 복구
-            const productRef = firebase
-              .database()
-              .ref("products/" + productKey);
+            const productRef = firebase.database().ref("products/" + key); // key로 수정
             const snapshot = await productRef.once("value");
             const product = snapshot.val();
 
@@ -121,22 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             cartItemDiv.remove();
-            updateTotalPrice();
+            updateTotalPrice(); // 총 결제 금액 업데이트 함수 호출
           } catch (error) {
             console.error("항목 제거 중 오류 발생:", error);
           }
         }
-
-        // 체크박스 변경
-        if (target.classList.contains("item-checkbox")) {
-          updateTotalPrice();
-        }
       });
 
-      // 결제 버튼 이벤트 처리
-      // document
-      //   .getElementById("checkout")
-      //   .addEventListener("click", processPayment);
       document
         .getElementById("checkout")
         .addEventListener("click", function () {
@@ -151,47 +106,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 총 결제 금액 업데이트 함수
 function updateTotalPrice() {
-  const checkboxes = document.querySelectorAll(".item-checkbox");
   let totalPrice = 0;
+  const cartItems = document.querySelectorAll(".cart-item");
 
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      const cartItemDiv = checkbox.parentElement;
-      const price = parseInt(
-        cartItemDiv.querySelector("p").textContent.replace(/[^0-9]/g, ""),
-        10
-      );
-      const quantity = parseInt(
-        cartItemDiv.querySelector(".quantity").textContent,
-        10
-      );
-      totalPrice += price * quantity;
-    }
+  cartItems.forEach((cartItemDiv) => {
+    const price = parseInt(
+      cartItemDiv.querySelector("p").textContent.replace(/[^0-9]/g, ""),
+      10
+    );
+    const quantity = parseInt(
+      cartItemDiv.querySelector(".quantity").textContent,
+      10
+    );
+    totalPrice += price * quantity;
   });
 
   document.getElementById(
     "total-price"
   ).textContent = `₩${totalPrice.toLocaleString()}`;
-}
-
-// 선택된 상품 정보 가져오기
-function getSelectedItems() {
-  const selectedItems = [];
-  const checkboxes = document.querySelectorAll(".item-checkbox:checked");
-
-  checkboxes.forEach((checkbox) => {
-    const itemDiv = checkbox.closest(".cart-item");
-    const itemInfo = {
-      productId: itemDiv.dataset.key,
-      productName: itemDiv.querySelector("h3").textContent,
-      productPrice: parseInt(
-        itemDiv.querySelector("p").textContent.replace(/[^0-9]/g, ""),
-        10
-      ),
-      quantity: parseInt(itemDiv.querySelector(".quantity").textContent, 10),
-    };
-    selectedItems.push(itemInfo);
-  });
-
-  return selectedItems;
 }
