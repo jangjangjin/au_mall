@@ -107,13 +107,14 @@ firebase.auth().onAuthStateChanged(function (user) {
                     const cartRef = firebase
                       .database()
                       .ref("carts/" + user.uid);
-                    const orderItems = selectedItems.map((item) => ({
-                      productId: item.productId,
-                      productName: item.productName,
-                      quantity: item.quantity,
-                      price: item.productPrice,
-                      totalPrice: item.productPrice * item.quantity,
-                    }));
+                      const orderItems = selectedItems.map((item) => ({
+                        productId: item.productId,
+                        productName: item.productName,
+                        quantity: item.quantity,
+                        // productPrice를 숫자로 변환
+                        price: Number(item.productPrice), 
+                        totalPrice: Number(item.productPrice) * item.quantity, // 숫자로 변환 후 총 가격 계산
+                      }));
                     const orderData = {
                       orderId: rsp.merchant_uid,
                       orderDate: new Date().toISOString(),
