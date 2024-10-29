@@ -1,9 +1,3 @@
-// HTML에 로딩 스피너 div 추가
-// <div id="loading-spinner" class="loading-spinner">
-//   <div class="spinner"></div>
-// </div>
-
-// CSS 스타일
 const style = document.createElement("style");
 style.textContent = `
 .loading-spinner {
