@@ -218,3 +218,90 @@ footer {
 .menu_link:hover {
   color: #000;
 }
+/* 문의 내역 스타일 */
+.inquiry-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.inquiry-summary {
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.inquiry-summary:hover {
+  background-color: #f0f0f0;
+}
+
+.inquiry-date {
+  font-size: 0.9em;
+  color: #666;
+  min-width: 150px;
+}
+
+.inquiry-title {
+  flex-grow: 1;
+  margin: 0 15px;
+}
+
+.inquiry-status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85em;
+}
+
+.status-pending {
+  background-color: #ffd700;
+  color: #000;
+}
+
+.status-progress {
+  background-color: #87ceeb;
+  color: #000;
+}
+
+.status-completed {
+  background-color: #90ee90;
+  color: #000;
+}
+
+.inquiry-content {
+  padding: 15px;
+  background-color: white;
+}
+
+.inquiry-message h4,
+.inquiry-answer h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.inquiry-answer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.answer-date {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.no-answer {
+  color: #666;
+  font-style: italic;
+}
+
+.no-inquiries {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+}

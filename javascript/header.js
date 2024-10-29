@@ -1,27 +1,89 @@
-function toggleMenu() {
-  const navUl = document.querySelector("nav ul");
-  navUl.classList.toggle("show");
+// HTML에 로딩 스피너 div 추가
+// <div id="loading-spinner" class="loading-spinner">
+//   <div class="spinner"></div>
+// </div>
+
+// CSS 스타일
+const style = document.createElement("style");
+style.textContent = `
+.loading-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-// 로그인 상태에 따라 메뉴 항목 표시/숨기기
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+nav ul {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+nav ul.loaded {
+  opacity: 1;
+}
+`;
+document.head.appendChild(style);
+
+function showLoading() {
+  document.getElementById("loading-spinner").style.display = "flex";
+  document.querySelector("nav ul").classList.remove("loaded");
+}
+
+function hideLoading() {
+  document.getElementById("loading-spinner").style.display = "none";
+  document.querySelector("nav ul").classList.add("loaded");
+}
+
 function updateMenuBasedOnAuth(user) {
-  const logoutItem = document.querySelector("#logout-button").parentElement; // 로그아웃 li
-  const loginItem = document.querySelector("nav ul li:nth-child(2)"); // 로그인 li
-  const signupItem = document.querySelector("nav ul li:nth-child(4)"); // 회원가입 li
+  const logoutItem = document.querySelector("#logout-button").parentElement;
+  const loginItem = document.querySelector("nav ul li:nth-child(2)");
+  const signupItem = document.querySelector("nav ul li:nth-child(4)");
 
   if (user) {
-    // 사용자가 로그인한 경우
-    logoutItem.style.display = "block"; // 로그아웃 표시
-    loginItem.style.display = "none"; // 로그인 숨기기
-    signupItem.style.display = "none"; // 회원가입 숨기기
+    logoutItem.style.display = "block";
+    loginItem.style.display = "none";
+    signupItem.style.display = "none";
   } else {
-    // 사용자가 로그인하지 않은 경우
-    logoutItem.style.display = "none"; // 로그아웃 숨기기
-    loginItem.style.display = "block"; // 로그인 표시
-    signupItem.style.display = "block"; // 회원가입 표시
+    logoutItem.style.display = "none";
+    loginItem.style.display = "block";
+    signupItem.style.display = "block";
   }
 }
 
+// 페이지 로드 시 실행
+window.onload = function () {
+  showLoading(); // 로딩 표시
+
+  // 1초 후에 로딩을 숨기고 메뉴 업데이트
+  setTimeout(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      updateMenuBasedOnAuth(user);
+      hideLoading();
+    });
+  }, 1000);
+};
+
+// 로그아웃 이벤트 리스너
 document.getElementById("logout-button").addEventListener("click", function () {
   firebase
     .auth()
@@ -35,10 +97,3 @@ document.getElementById("logout-button").addEventListener("click", function () {
       console.error("로그아웃 중 오류 발생:", error);
     });
 });
-
-// Firebase에서 로그인 상태 변화를 감지
-window.onload = function () {
-  firebase.auth().onAuthStateChanged(function (user) {
-    updateMenuBasedOnAuth(user);
-  });
-};
