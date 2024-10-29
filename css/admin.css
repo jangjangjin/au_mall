@@ -434,19 +434,24 @@ footer {
 }
 
 /* 상태별 스타일 */
-.inquiry-status:contains("pending") {
+.status-pending {
   background-color: #ffd700;
   color: #000;
 }
 
-.inquiry-status:contains("progress") {
+.status-progress {
   background-color: #87ceeb;
   color: #000;
 }
 
-.inquiry-status:contains("completed") {
+.status-completed {
   background-color: #90ee90;
   color: #000;
+}
+
+.inquiry-status {
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 /* 문의 정보 영역 */

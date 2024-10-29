@@ -470,6 +470,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         const inquiry = childSnapshot.val();
         const inquiryId = childSnapshot.key;
 
+        // 상태에 따른 클래스 결정
+        const statusClass = `status-${inquiry.status.toLowerCase()}`;
+
         const inquiryElement = document.createElement("div");
         inquiryElement.className = "admin-inquiry-item";
         inquiryElement.innerHTML = `
@@ -477,7 +480,9 @@ firebase.auth().onAuthStateChanged(function (user) {
                         <span class="inquiry-date">작성일: ${formatDate(
                           inquiry.timestamp
                         )}</span>
-                        <span class="inquiry-status">${inquiry.status}</span>
+                        <span class="inquiry-status ${statusClass}">${
+          inquiry.status
+        }</span>
                     </div>
                     <div class="inquiry-info">
                         <p><strong>작성자:</strong> ${inquiry.name}</p>
