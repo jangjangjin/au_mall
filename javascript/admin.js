@@ -1,4 +1,4 @@
-// 이미지 미리보기 기능
+
 document
   .getElementById("product-image")
   .addEventListener("change", function (event) {
@@ -14,7 +14,7 @@ document
     }
   });
 
-// 이미지 변환 및 업로드 함수
+
 function convertAndUploadImage(file, callback) {
   const reader = new FileReader();
   reader.onload = function (event) {
@@ -34,7 +34,7 @@ function convertAndUploadImage(file, callback) {
   reader.readAsDataURL(file);
 }
 
-// 상품 추가 폼 제출 이벤트 처리
+
 document
   .getElementById("add-product-form")
   .addEventListener("submit", function (event) {
@@ -57,12 +57,12 @@ document
             ".webp"
         );
 
-        // 이미지 업로드
+        
         imageRef
           .put(webpBlob)
           .then((snapshot) => {
             snapshot.ref.getDownloadURL().then((downloadURL) => {
-              // 상품 정보를 데이터베이스에 저장
+              
               const productData = {
                 name: productName,
                 price: productPrice,
@@ -81,7 +81,7 @@ document
                   document.getElementById("add-product-form").reset();
                   document.getElementById("image-preview").style.display =
                     "none";
-                  // 상품 목록 갱신
+                  
                   addProductToList(productId, productData);
                 })
                 .catch((error) => {
@@ -98,7 +98,7 @@ document
     }
   });
 
-// 상품 목록에 항목 추가
+
 function addProductToList(productId, productData) {
   const productList = document.querySelector(".product-list ul");
   const listItem = document.createElement("li");
@@ -117,14 +117,14 @@ function addProductToList(productId, productData) {
     `;
   productList.appendChild(listItem);
 
-  // 제거 버튼 이벤트 추가
+  
   listItem
     .querySelector(".remove-product")
     .addEventListener("click", function () {
       removeProduct(productId, productData.imageUrl);
     });
 
-  // 수정 버튼 이벤트 추가
+  
   listItem
     .querySelector(".edit-product")
     .addEventListener("click", function () {
@@ -132,12 +132,12 @@ function addProductToList(productId, productData) {
     });
 }
 
-// 모달 창 열기 함수
+
 function openEditModal(productId, productData) {
   const modal = document.getElementById("edit-product-modal");
   modal.style.display = "block";
 
-  // 수정 폼에 기존 데이터 채우기
+  
   document.getElementById("edit-product-name").value = productData.name;
   document.getElementById("edit-product-price").value = productData.price;
   document.getElementById("edit-product-description").value =
@@ -146,21 +146,21 @@ function openEditModal(productId, productData) {
   document.getElementById("edit-image-preview").src = productData.imageUrl;
   document.getElementById("edit-image-preview").style.display = "block";
 
-  // 수정 폼 제출 이벤트 처리
+  
   document.getElementById("edit-product-form").onsubmit = function (event) {
     event.preventDefault();
-    document.getElementById("loading-spinner").style.display = "block"; // 로딩 스피너 표시
+    document.getElementById("loading-spinner").style.display = "block"; 
     updateProduct(productId);
   };
 }
 
-// 모달 창 닫기 이벤트 추가
+
 document.querySelector(".modal .close").addEventListener("click", function () {
   document.getElementById("edit-product-modal").style.display = "none";
-  document.getElementById("loading-spinner").style.display = "none"; // 로딩 스피너 숨기기
+  document.getElementById("loading-spinner").style.display = "none"; 
 });
 
-// 상품 업데이트 함수
+
 function updateProduct(productId) {
   const productName = document.getElementById("edit-product-name").value;
   const productPrice = document.getElementById("edit-product-price").value;
@@ -186,7 +186,7 @@ function updateProduct(productId) {
         "product-images/" + productImage.name.replace(/\.[^/.]+$/, "") + ".webp"
       );
 
-      // 이미지 업로드
+      
       imageRef
         .put(webpBlob)
         .then((snapshot) => {
@@ -197,7 +197,7 @@ function updateProduct(productId) {
         })
         .catch((error) => {
           console.error("이미지 업로드 중 오류 발생:", error);
-          document.getElementById("loading-spinner").style.display = "none"; // 로딩 스피너 숨기기
+          document.getElementById("loading-spinner").style.display = "none"; 
         });
     });
   } else {
@@ -205,7 +205,7 @@ function updateProduct(productId) {
   }
 }
 
-// 상품 데이터 저장 함수
+
 function saveProductData(productId, productData) {
   firebase
     .database()
@@ -216,16 +216,16 @@ function saveProductData(productId, productData) {
       document.getElementById("add-product-form").reset();
       document.getElementById("image-preview").style.display = "none";
       loadProductList();
-      document.getElementById("loading-spinner").style.display = "none"; // 로딩 스피너 숨기기
-      document.getElementById("edit-product-modal").style.display = "none"; // 모달 창 닫기
+      document.getElementById("loading-spinner").style.display = "none"; 
+      document.getElementById("edit-product-modal").style.display = "none"; 
     })
     .catch((error) => {
       console.error("상품 수정 중 오류 발생:", error);
-      document.getElementById("loading-spinner").style.display = "none"; // 로딩 스피너 숨기기
+      document.getElementById("loading-spinner").style.display = "none"; 
     });
 }
 
-// 선택된 상품 제거 함수
+
 function removeSelectedProducts() {
   const selectedProducts = document.querySelectorAll(".select-product:checked");
   const promises = [];
@@ -241,7 +241,7 @@ function removeSelectedProducts() {
   });
 }
 
-// 전체 선택/해제 함수
+
 function toggleSelectAllProducts() {
   const checkboxes = document.querySelectorAll(".select-product");
   const allChecked = Array.from(checkboxes).every(
@@ -252,10 +252,10 @@ function toggleSelectAllProducts() {
   });
 }
 
-// 초기 상품 목록 로드
+
 function loadProductList() {
   const productList = document.querySelector(".product-list ul");
-  productList.innerHTML = ""; // 기존 목록 초기화
+  productList.innerHTML = ""; 
 
   firebase
     .database()
@@ -269,7 +269,7 @@ function loadProductList() {
     });
 }
 
-// 초기 로드 시 이벤트 리스너 추가
+
 document.addEventListener("DOMContentLoaded", function () {
   loadProductList();
   loadUserList();
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", toggleSelectAllProducts);
 });
 
-// 상품 제거 함수
+
 function removeProduct(productId, imageUrl) {
   return firebase
     .database()
@@ -305,14 +305,14 @@ function removeProduct(productId, imageUrl) {
     });
 }
 
-// Firebase Storage URL 유효성 검사 함수
+
 function isValidFirebaseStorageUrl(url) {
   const pattern =
     /^https:\/\/firebasestorage\.googleapis\.com\/v0\/b\/[^\/]+\/o\/[^?]+/;
   return pattern.test(url);
 }
 
-// 회원 제거 함수 추가
+
 function removeUser(userId) {
   firebase
     .database()
@@ -328,7 +328,7 @@ function removeUser(userId) {
     });
 }
 
-// 회원 목록에 항목 추가
+
 function addUserToList(userId, userData) {
   const userList = document.querySelector(".user-list ul");
   const listItem = document.createElement("li");
@@ -342,16 +342,16 @@ function addUserToList(userId, userData) {
     `;
   userList.appendChild(listItem);
 
-  // 제거 버튼 이벤트 추가
+  
   listItem.querySelector(".remove-user").addEventListener("click", function () {
     removeUser(userId);
   });
 }
 
-// 초기 회원 목록 로드
+
 function loadUserList() {
   const userList = document.querySelector(".user-list ul");
-  userList.innerHTML = ""; // 기존 목록 초기화
+  userList.innerHTML = ""; 
 
   firebase
     .database()
@@ -365,7 +365,7 @@ function loadUserList() {
     });
 }
 
-// CSV 파일 업로드 이벤트 처리
+
 let csvData = null;
 
 document
@@ -376,21 +376,21 @@ document
       const reader = new FileReader();
       reader.onload = function (e) {
         csvData = e.target.result;
-        // BOM 제거
+        
         if (csvData.charCodeAt(0) === 0xfeff) {
           csvData = csvData.substr(1);
         }
       };
-      reader.readAsText(file, "UTF-8"); // UTF-8 인코딩 지정
+      reader.readAsText(file, "UTF-8"); 
     }
   });
 
-// CSV 데이터 저장 버튼 이벤트 추가
+
 document.getElementById("upload-csv").addEventListener("click", function () {
   if (csvData) {
     const products = processCSVData(csvData);
     uploadCSVData(products);
-    // 파일 입력 필드 초기화
+    
     document.getElementById("csv-file").value = "";
     csvData = null;
   } else {
@@ -398,10 +398,10 @@ document.getElementById("upload-csv").addEventListener("click", function () {
   }
 });
 
-// CSV 데이터 처리 함수
+
 function processCSVData(csvData) {
   const lines = csvData.split("\n");
-  const headers = lines[0].split(",").map((header) => header.trim()); // 키 값에서 공백 제거
+  const headers = lines[0].split(",").map((header) => header.trim()); 
 
   const products = [];
   for (let i = 1; i < lines.length; i++) {
@@ -410,12 +410,12 @@ function processCSVData(csvData) {
       const productData = {};
       for (let j = 0; j < headers.length; j++) {
         const key = headers[j];
-        const value = data[j].trim(); // 값에서 공백 제거
+        const value = data[j].trim(); 
         productData[key] = value;
       }
-      // 기본 이미지 URL 설정
+      
       if (!productData.imageUrl) {
-        productData.imageUrl = "https://example.com/default-image.jpg"; // 기본 이미지 URL
+        productData.imageUrl = "https://example.com/default-image.jpg"; 
       }
       products.push(productData);
     }
@@ -423,7 +423,7 @@ function processCSVData(csvData) {
   return products;
 }
 
-// CSV 데이터 Firebase에 업로드 함수
+
 function uploadCSVData(products) {
   products.forEach((productData) => {
     const productId = firebase.database().ref("products").push().key;
@@ -439,75 +439,74 @@ function uploadCSVData(products) {
         console.error("상품 추가 중 오류 발생:", error);
       });
   });
-} // Firebase에서 모든 문의사항을 가져와서 관리자 페이지에 표시
+} 
+function formatDate(timestamp) {
+  if (!timestamp) return 'N/A';
+  
+  const date = new Date(timestamp);
+  
+  
+  if (isNaN(date.getTime())) return 'Invalid Date';
+  
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
+
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-    // 모든 문의사항 가져오기
     const inquiryRef = firebase.database().ref("inquiries");
     inquiryRef.on("value", (snapshot) => {
       const inquiriesList = document.getElementById("admin-inquiries-list");
-      inquiriesList.innerHTML = ""; // 기존 내용 초기화
+      inquiriesList.innerHTML = "";
 
       if (!snapshot.exists()) {
-        inquiriesList.innerHTML =
-          '<p class="no-inquiries">문의 내역이 없습니다.</p>';
+        inquiriesList.innerHTML = '<p class="no-inquiries">문의 내역이 없습니다.</p>';
         return;
       }
-
-      // 날짜 포맷팅 함수
-      const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleString("ko-KR", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-      };
 
       snapshot.forEach((childSnapshot) => {
         const inquiry = childSnapshot.val();
         const inquiryId = childSnapshot.key;
 
-        // 상태에 따른 클래스 결정
-        const statusClass = `status-${inquiry.status.toLowerCase()}`;
+        
+        const status = inquiry.status || 'pending';
+        const statusClass = `status-${status.toLowerCase()}`;
 
         const inquiryElement = document.createElement("div");
         inquiryElement.className = "admin-inquiry-item";
         inquiryElement.innerHTML = `
-                    <div class="inquiry-header">
-                        <span class="inquiry-date">작성일: ${formatDate(
-                          inquiry.timestamp
-                        )}</span>
-                        <span class="inquiry-status ${statusClass}">${
-          inquiry.status
-        }</span>
-                    </div>
-                    <div class="inquiry-info">
-                        <p><strong>작성자:</strong> ${inquiry.name}</p>
-                        <p><strong>이메일:</strong> ${inquiry.email}</p>
-                        <p><strong>문의내용:</strong> ${inquiry.message}</p>
-                    </div>
-                    <div class="answer-section">
-                        <h4>답변</h4>
-                        <textarea id="answer-${inquiryId}" class="answer-textarea"
-                            ${inquiry.answer ? "disabled" : ""}
-                        >${inquiry.answer || ""}</textarea>
-                        ${
-                          inquiry.answer
-                            ? `
-                            <p class="answer-info">답변일: ${formatDate(
-                              inquiry.answerTimestamp
-                            )}</p>
-                            <button onclick="editAnswer('${inquiryId}')" class="edit-btn">답변 수정</button>
-                        `
-                            : `
-                            <button onclick="submitAnswer('${inquiryId}')" class="submit-btn">답변 등록</button>
-                        `
-                        }
-                    </div>
-                `;
+          <div class="inquiry-header">
+              <span class="inquiry-date">작성일: ${formatDate(inquiry.timestamp)}</span>
+              <span class="inquiry-status ${statusClass}">${status}</span>
+          </div>
+          <div class="inquiry-info">
+              <p><strong>작성자:</strong> ${inquiry.name}</p>
+              <p><strong>이메일:</strong> ${inquiry.email}</p>
+              <p><strong>문의내용:</strong> ${inquiry.message}</p>
+          </div>
+          <div class="answer-section">
+              <h4>답변</h4>
+              <textarea id="answer-${inquiryId}" class="answer-textarea"
+                  ${inquiry.answer ? "disabled" : ""}
+              >${inquiry.answer || ""}</textarea>
+              ${
+                inquiry.answer
+                  ? `
+                  <p class="answer-info">답변일: ${formatDate(inquiry.answerTimestamp)}</p>
+                  <button onclick="editAnswer('${inquiryId}')" class="edit-btn">답변 수정</button>
+              `
+                  : `
+                  <button onclick="submitAnswer('${inquiryId}')" class="submit-btn">답변 등록</button>
+              `
+              }
+          </div>
+        `;
 
         inquiriesList.appendChild(inquiryElement);
       });
@@ -515,11 +514,8 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
-// 답변 제출 함수
 window.submitAnswer = function (inquiryId) {
-  const answerText = document
-    .getElementById(`answer-${inquiryId}`)
-    .value.trim();
+  const answerText = document.getElementById(`answer-${inquiryId}`).value.trim();
 
   if (!answerText) {
     alert("답변을 입력해주세요.");
@@ -528,33 +524,32 @@ window.submitAnswer = function (inquiryId) {
 
   const inquiryRef = firebase.database().ref("inquiries").child(inquiryId);
 
-  inquiryRef
-    .update({
-      answer: answerText,
-      answerTimestamp: new Date().toISOString(),
-      status: "completed",
-    })
-    .then(() => {
-      alert("답변이 등록되었습니다.");
-    })
-    .catch((error) => {
-      console.error("답변 등록 중 오류 발생:", error);
-      alert("답변 등록에 실패했습니다.");
-    });
+  inquiryRef.update({
+    answer: answerText,
+    answerTimestamp: new Date().toISOString(),
+    status: "completed"  
+  })
+  .then(() => {
+    alert("답변이 등록되었습니다.");
+  })
+  .catch((error) => {
+    console.error("답변 등록 중 오류 발생:", error);
+    alert("답변 등록에 실패했습니다.");
+  });
 };
 
-// 답변 수정 함수
+
 window.editAnswer = function (inquiryId) {
   const textarea = document.getElementById(`answer-${inquiryId}`);
   const currentAnswer = textarea.value;
 
   if (textarea.disabled) {
-    // 수정 모드 활성화
+    
     textarea.disabled = false;
     textarea.focus();
     event.target.textContent = "수정 완료";
   } else {
-    // 수정사항 저장
+    
     const newAnswer = textarea.value.trim();
 
     if (!newAnswer) {
