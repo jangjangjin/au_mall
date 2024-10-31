@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -56,7 +57,7 @@ nav ul li a {
 .slider {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -72,8 +73,7 @@ nav ul li a {
 
 .slide img {
   width: 100%;
-  height: 100%; /* 슬라이더 높이에 맞춰 조정 */
-  object-fit: contain; /* 비율 유지하며 자르지 않음 */
+  height: 300px; /* 슬라이더 높이에 맞춰 조정 */
 }
 
 /* 이전/다음 버튼 */
@@ -143,7 +143,7 @@ h2 {
 }
 
 .section-header {
-  font-family: 'Pretendard-Regular';
+  font-family: "Pretendard-Regular";
   text-align: center;
   padding: 40px 0;
   background-color: #f4f4f4; /* 배경 색상 추가 */
@@ -168,7 +168,7 @@ h2 {
 }
 
 .product-list {
-  font-family: 'Pretendard-Regular';
+  font-family: "Pretendard-Regular";
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 가로로 5개의 열 */
   gap: 30px; /* 그리드 아이템 간격 */
