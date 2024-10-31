@@ -50,6 +50,7 @@ nav ul li a {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: background-color 0.3s;
+  font-weight: bold;
 }
 
 /* 햄버거 메뉴 아이콘 기본적으로 숨김 */
