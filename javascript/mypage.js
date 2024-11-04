@@ -1,6 +1,80 @@
 // Firebase에서 로그인 상태 변화를 감지
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+    // 리뷰를 가져올 참조 생성
+    const reviewsRef = firebase.database().ref("reviews");
+
+    // 현재 사용자의 리뷰만 가져오기
+    reviewsRef
+      .orderByChild("userId")
+      .equalTo(user.uid)
+      .on("value", (snapshot) => {
+        const reviewsList = document.querySelector(".section ul");
+        reviewsList.innerHTML = ""; // 기존 리뷰 목록 초기화
+
+        if (!snapshot.exists()) {
+          reviewsList.innerHTML =
+            '<li class="no-reviews">작성한 리뷰가 없습니다.</li>';
+          return;
+        }
+
+        // 날짜 포맷팅 함수
+        const formatDate = (timestamp) => {
+          const date = new Date(timestamp);
+          return date.toLocaleDateString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          });
+        };
+
+        // 리뷰 데이터를 배열로 변환하고 날짜순으로 정렬
+        const reviews = [];
+        snapshot.forEach((childSnapshot) => {
+          reviews.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+          });
+        });
+
+        // 날짜 기준 내림차순 정렬 (최신순)
+        reviews.sort((a, b) => b.timestamp - a.timestamp);
+
+        // 별점을 별 이모지로 변환하는 함수
+        const getStarRating = (rating) =>
+          "★".repeat(rating) + "☆".repeat(5 - rating);
+
+        // 각 리뷰에 대한 HTML 요소 생성
+        reviews.forEach((review) => {
+          // 제품 정보를 가져오기 위한 참조
+          firebase
+            .database()
+            .ref("products/" + review.productId)
+            .once("value")
+            .then((productSnapshot) => {
+              const product = productSnapshot.val();
+              const productName = product ? product.name : "삭제된 상품";
+
+              const li = document.createElement("li");
+              li.className = "review-item";
+              li.innerHTML = `
+              <div class="review-header">
+                <span class="review-product">${productName}</span>
+                <span class="review-rating">${getStarRating(
+                  review.rating
+                )}</span>
+                <span class="review-date">${formatDate(review.timestamp)}</span>
+              </div>
+              <div class="review-content">
+                <p>${review.review}</p>
+              </div>
+            `;
+              reviewsList.appendChild(li);
+            });
+        });
+      });
+  }
+  if (user) {
     console.log("사용자 로그인 상태 감지:", user); // 사용자 로그인 확인
     const userRef = firebase.database().ref("users/" + user.uid);
 

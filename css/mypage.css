@@ -305,3 +305,44 @@ footer {
   color: #666;
   padding: 20px;
 }
+/* 리뷰 섹션 스타일 */
+.review-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  list-style: none;
+}
+
+.review-header {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.review-product {
+  font-weight: bold;
+  color: #333;
+}
+
+.review-rating {
+  color: #ffb400;
+  letter-spacing: 2px;
+}
+
+.review-date {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.review-content p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.no-reviews {
+  color: #666;
+  text-align: center;
+  padding: 20px 0;
+}
