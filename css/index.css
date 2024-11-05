@@ -19,39 +19,6 @@ body {
   background-color: #fff;
 }
 
-/* 헤더 스타일 */
-header {
-  background-color: #fff;
-  border-bottom: 1px solid #ebebeb;
-  padding: 0 40px;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 68px;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-}
-
-nav ul {
-  display: flex;
-  list-style-type: none;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #222;
-  font-size: 18px;
-  font-weight: bold;
-}
-
 /* 슬라이더 영역 */
 .slider {
   position: relative;

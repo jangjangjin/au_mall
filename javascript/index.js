@@ -82,4 +82,14 @@ fetch("./html/footer.html")
   .catch((error) =>
     console.error("Footer를 로드하는 중 오류가 발생했습니다:", error)
   );
+// header 로드
+fetch("./html/header.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("header-container").innerHTML = data;
+  })
+  .catch((error) =>
+    console.error("Header를 로드하는 중 오류가 발생했습니다:", error)
+  );
+
 document.addEventListener("DOMContentLoaded", onDOMLoaded);
