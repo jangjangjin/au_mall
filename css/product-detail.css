@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body
+{
+  font-family: "Pretendard-Regular";
+}
+
+button
+{
+  font-family: "Pretendard-Regular";
+}
+
 .modal {
   display: flex;
   position: fixed;
@@ -123,6 +141,7 @@ main {
 }
 
 button {
+  background-color: transparent; /* 배경색을 투명으로 설정 */
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
