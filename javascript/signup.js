@@ -46,3 +46,13 @@ document
         alert("회원가입 중 오류가 발생했습니다: " + error.message);
       });
   });
+function onDOMLoaded() {}
+fetch("footer.html")
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById("footer-container").innerHTML = data;
+  })
+  .catch((error) =>
+    console.error("Footer를 로드하는 중 오류가 발생했습니다:", error)
+  );
+document.addEventListener("DOMContentLoaded", onDOMLoaded);
