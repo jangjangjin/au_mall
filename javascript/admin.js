@@ -382,7 +382,7 @@ document.getElementById("upload-csv").addEventListener("click", function () {
 });
 
 function processCSVData(csvData) {
-  const lines = csvData.split("\n");
+  const lines = csvData.split("\n").filter((line) => line.trim() !== ""); // 빈 줄 제거
   const headers = lines[0].split(",").map((header) => header.trim());
 
   const products = [];
@@ -393,13 +393,22 @@ function processCSVData(csvData) {
       for (let j = 0; j < headers.length; j++) {
         const key = headers[j];
         const value = data[j].trim();
-        productData[key] = value;
+
+        // tags 필드를 쉼표로 분리하여 배열로 저장
+        if (key === "tags") {
+          productData[key] = value.split("/").map((tag) => tag.trim());
+        } else {
+          productData[key] = value;
+        }
       }
 
+      // 기본 이미지 URL 할당
       if (!productData.imageUrl) {
         productData.imageUrl = "https://example.com/default-image.jpg";
       }
       products.push(productData);
+    } else {
+      console.warn(`CSV 파일의 ${i + 1}번째 줄에서 데이터 형식 불일치 발견`);
     }
   }
   return products;
@@ -421,6 +430,7 @@ function uploadCSVData(products) {
       });
   });
 }
+
 function formatDate(timestamp) {
   if (!timestamp) return "N/A";
 
