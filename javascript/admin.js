@@ -569,3 +569,27 @@ window.editAnswer = function (inquiryId) {
       });
   }
 };
+
+//엑셀 상품 추가 양식 다운로드 함수
+function downloadFile() {
+  // Firebase 스토리지 참조 설정
+  const storageRef = firebase.storage().ref();
+  const fileRef = storageRef.child("상품추가 데이터 양식.csv"); // 파일 경로에 맞게 수정
+
+  // 다운로드 URL 가져오기
+  fileRef
+    .getDownloadURL()
+    .then((url) => {
+      // 파일 다운로드 링크 생성 및 클릭
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "상품추가 데이터 양식"; // 다운로드될 파일 이름 설정
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch((error) => {
+      console.error("파일 다운로드 중 오류 발생:", error);
+      alert("파일 다운로드에 실패했습니다.");
+    });
+}
