@@ -408,6 +408,7 @@ function processCSVData(csvData) {
       }
       products.push(productData);
     } else {
+      alert(`csv 파일 ${i + 1}번째 줄에서 데이터 형식 불일치 발견`);
       console.warn(`CSV 파일의 ${i + 1}번째 줄에서 데이터 형식 불일치 발견`);
     }
   }
