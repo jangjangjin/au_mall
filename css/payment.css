@@ -74,10 +74,3 @@ input[type="tel"] {
 input[type="radio"] {
   margin-right: 0.5rem;
 }
-
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
