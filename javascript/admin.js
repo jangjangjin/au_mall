@@ -205,7 +205,7 @@ function saveProductData(productId, productData) {
   firebase
     .database()
     .ref("products/" + productId)
-    .set(productData)
+    .update(productData)
     .then(() => {
       alert("상품이 수정되었습니다.");
       document.getElementById("add-product-form").reset();
