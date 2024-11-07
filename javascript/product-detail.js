@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 const cartRef = firebase.database().ref("carts/" + userId);
                 console.log("현재 사용자 ID:", userId);
 
-                // 상품의 실제 ID를 키로 사용
                 cartRef
                   .child(productId)
                   .once("value")
@@ -69,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     const totalPrice = product.price * addQuantity;
                     const productImage =
                       product.imageUrl || "https://via.placeholder.com/100";
+
+                    // 태그 정보 가져오기
+                    const tags = product.tags || {};
+                    const tagArray = Object.values(tags);
+                    console.log("상품 태그:", tagArray);
 
                     if (snapshot.exists()) {
                       // 이미 장바구니에 있는 경우 수량과 총 가격만 업데이트
@@ -87,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         .update({
                           quantity: newQuantity,
                           totalPrice: newTotalPrice,
+                          tags: tagArray, // 태그 정보 업데이트
                         })
                         .then(() => {
                           showModal();
@@ -110,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           productImage: productImage,
                           quantity: addQuantity,
                           totalPrice: totalPrice,
+                          tags: tagArray, // 태그 정보 추가
                           addedAt: new Date().toISOString(),
                         })
                         .then(() => {
@@ -177,6 +183,18 @@ function setProductDetails(product) {
     product.description;
   document.getElementById("stock").textContent =
     "재고: " + product.quantity + "개";
+
+  // 태그 정보 표시
+  const tagsContainer = document.querySelector(".product-tags");
+  if (tagsContainer && product.tags) {
+    tagsContainer.innerHTML = "";
+    Object.values(product.tags).forEach(tag => {
+      const tagElement = document.createElement("span");
+      tagElement.className = "tag";
+      tagElement.textContent = tag;
+      tagsContainer.appendChild(tagElement);
+    });
+  }
 }
 
 function updateStock(dbRef, product, addQuantity) {
@@ -196,6 +214,7 @@ function updateStock(dbRef, product, addQuantity) {
     alert("재고가 부족합니다.");
   }
 }
+
 function onDOMLoaded() {}
 fetch("footer.html")
   .then((response) => response.text())
