@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>리뷰 페이지</title>
-    <link rel="stylesheet" href="../css/reviews.css" />
+    <title>상품 검색</title>
+    <link rel="stylesheet" href="../css/search.css" />
     <link rel="stylesheet" href="../css/header.css" />
   </head>
   <body>
@@ -22,7 +22,7 @@
             <li><a href="./cart.html">장바구니</a></li>
             <li><a href="./mypage.html">마이페이지</a></li>
             <li><a href="./customer-service.html">고객 서비스</a></li>
-            <li><a href="./search.html">상품 검색</li>
+            <li><a href="./html/search.html">상품 검색</li>
             <li class="admin"><a href="./admin.html">관리자 페이지</a></li>
           </ul>
         </nav>
@@ -30,25 +30,30 @@
       <div id="loading-spinner" class="loading-spinner">
         <div class="spinner"></div>
       </div>
-      <main>
-        <h2>리뷰 페이지</h2>
-        <div class="reviews-container">
-          <div class="review-item"></div>
-          <div class="review-item"></div>
-        </div>
-      </main>
+     <main>
+  <h2>상품 검색</h2>
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="검색어를 입력하세요." />
+    <button onclick="searchProducts()">검색</button>
+  </div>
+
+  <div id="search-history" class="search-history">
+    <h3>검색 기록</h3>
+  </div>
+
+  <div id="search-results" class="search-results"></div>
+</main>
+
+      
 
       <div id="footer-container"></div>
     </div>
 
-    <!-- Firebase scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-
-    <!-- Firebase configuration -->
     <script src="../javascript/firebaseConfig.js"></script>
-    <script src="../javascript/reviews.js"></script>
+    <script src="../javascript/search.js"></script>
     <script src="../javascript/header.js"></script>
   </body>
 </html>
