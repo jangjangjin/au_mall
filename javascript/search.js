@@ -19,11 +19,12 @@ function searchProducts() {
 
       Object.keys(products).forEach((id) => {
         const product = products[id];
-        if (
-          product.name.includes(searchInput.value.trim()) ||
-          (product.description &&
-            product.description.includes(searchInput.value.trim()))
-        ) {
+        const nameMatch = product.name.includes(searchInput.value.trim());
+        const tagMatch = Object.values(product.tags).some((tag) =>
+          tag.includes(searchInput.value.trim())
+        );
+
+        if (nameMatch || tagMatch) {
           results.push({
             id,
             ...product,
